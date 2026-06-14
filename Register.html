@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account – SwiftDrop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+  </head>
+  <body class="auth-page">
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="auth-header">
+      <a href="app.html" class="nav__logo">
+        Swift<span class="accent">Drop</span>
+      </a>
+      <p class="auth-header__hint">
+        Already have an account?
+        <a href="login.html" class="auth-link">Log in</a>
+      </p>
+    </header>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="auth-main">
+      <div class="auth-card">
+
+        <!-- Left panel — branding -->
+        <div class="auth-card__panel auth-card__panel--brand">
+          <div class="brand-panel__inner">
+            <p class="brand-panel__eyebrow">Join SwiftDrop</p>
+            <h1 class="brand-panel__headline">
+              Send, track,<br />and earn — fast.
+            </h1>
+            <p class="brand-panel__sub">
+              Create your account in under 60 seconds. No credit card required.
+            </p>
+
+            <!-- Benefit list -->
+            <ul class="benefit-list">
+              <li class="benefit-item">
+                <span class="benefit-icon">📦</span>
+                <div>
+                  <strong>Customers</strong>
+                  <p>Request deliveries, track in real time, view history.</p>
+                </div>
+              </li>
+              <li class="benefit-item">
+                <span class="benefit-icon">🏍️</span>
+                <div>
+                  <strong>Drivers</strong>
+                  <p>Accept jobs, update statuses, track your earnings.</p>
+                </div>
+              </li>
+              <li class="benefit-item">
+                <span class="benefit-icon">🔐</span>
+                <div>
+                  <strong>Secure by default</strong>
+                  <p>JWT auth, role-based access, encrypted passwords.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right panel — form -->
+        <div class="auth-card__panel auth-card__panel--form">
+          <div class="form-panel__inner">
+            <h2 class="form-panel__title">Create your account</h2>
+            <p class="form-panel__sub">Fill in the details below to get started.</p>
+
+            <form class="auth-form" id="register-form" novalidate>
+
+              <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  placeholder="Adewale Okafor"
+                  autocomplete="name"
+                  required
+                />
+                <span class="field-error" id="fullname-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  required
+                />
+                <span class="field-error" id="email-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+234 800 000 0000"
+                  autocomplete="tel"
+                  required
+                />
+                <span class="field-error" id="phone-error"></span>
+              </div>
+
+              <!-- Role selector -->
+              <div class="form-group">
+                <label>I want to join as</label>
+                <div class="role-selector" id="role-selector">
+                  <label class="role-option" for="role-customer">
+                    <input
+                      type="radio"
+                      id="role-customer"
+                      name="role"
+                      value="CUSTOMER"
+                      checked
+                    />
+                    <span class="role-option__card">
+                      <span class="role-option__icon">📦</span>
+                      <span class="role-option__label">Customer</span>
+                      <span class="role-option__desc">I want to send packages</span>
+                    </span>
+                  </label>
+                  <label class="role-option" for="role-driver">
+                    <input
+                      type="radio"
+                      id="role-driver"
+                      name="role"
+                      value="DRIVER"
+                    />
+                    <span class="role-option__card">
+                      <span class="role-option__icon">🏍️</span>
+                      <span class="role-option__label">Driver</span>
+                      <span class="role-option__desc">I want to deliver & earn</span>
+                    </span>
+                  </label>
+                </div>
+                <span class="field-error" id="role-error"></span>
+              </div>
+
+              <!-- Driver-only field (shown conditionally) -->
+              <div class="form-group" id="vehicle-group" style="display: none;">
+                <label for="vehicle">Vehicle Type</label>
+                <select id="vehicle" name="vehicle_type">
+                  <option value="">Select your vehicle</option>
+                  <option value="MOTORCYCLE">Motorcycle</option>
+                  <option value="BICYCLE">Bicycle</option>
+                  <option value="CAR">Car</option>
+                  <option value="VAN">Van / Truck</option>
+                </select>
+                <span class="field-error" id="vehicle-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Min. 8 characters"
+                    autocomplete="new-password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    aria-label="Show password"
+                    data-target="password"
+                  >👁</button>
+                </div>
+                <div class="password-strength" id="strength-bar">
+                  <div class="strength-fill" id="strength-fill"></div>
+                </div>
+                <p class="strength-label" id="strength-label"></p>
+                <span class="field-error" id="password-error"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <div class="input-wrapper">
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    name="confirm_password"
+                    placeholder="Repeat your password"
+                    autocomplete="new-password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="toggle-password"
+                    aria-label="Show confirm password"
+                    data-target="confirm-password"
+                  >👁</button>
+                </div>
+                <span class="field-error" id="confirm-error"></span>
+              </div>
+
+              <div class="form-group form-group--checkbox">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="terms" id="terms" required />
+                  <span class="checkbox-custom"></span>
+                  I agree to the
+                  <a href="#" class="auth-link">Terms of Service</a>
+                  and
+                  <a href="#" class="auth-link">Privacy Policy</a>
+                </label>
+                <span class="field-error" id="terms-error"></span>
+              </div>
+
+              <div class="form-error" id="form-error" role="alert"></div>
+
+              <button type="submit" class="btn btn--primary btn--lg btn--full" id="submit-btn">
+                Create Account
+              </button>
+
+            </form>
+
+            <p class="form-panel__footer">
+              Already have an account?
+              <a href="login.html" class="auth-link">Log in here</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <script>
+      // ---- Toggle password visibility ----
+      document.querySelectorAll(".toggle-password").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const input = document.getElementById(btn.dataset.target);
+          const isText = input.type === "text";
+          input.type = isText ? "password" : "text";
+          btn.textContent = isText ? "👁" : "🙈";
+        });
+      });
+
+      // ---- Show / hide vehicle field based on role ----
+      const roleInputs = document.querySelectorAll('input[name="role"]');
+      const vehicleGroup = document.getElementById("vehicle-group");
+
+      roleInputs.forEach((input) => {
+        input.addEventListener("change", () => {
+          vehicleGroup.style.display =
+            input.value === "DRIVER" ? "flex" : "none";
+        });
+      });
+
+      // ---- Password strength meter ----
+      const passwordInput = document.getElementById("password");
+      const strengthFill = document.getElementById("strength-fill");
+      const strengthLabel = document.getElementById("strength-label");
+
+      const strengthLevels = [
+        { label: "",         color: "transparent", width: "0%" },
+        { label: "Weak",     color: "#ef4444",     width: "25%" },
+        { label: "Fair",     color: "#f97316",     width: "50%" },
+        { label: "Good",     color: "#facc15",     width: "75%" },
+        { label: "Strong",   color: "#22c55e",     width: "100%" },
+      ];
+
+      function getStrength(pw) {
+        let score = 0;
+        if (pw.length >= 8)  score++;
+        if (/[A-Z]/.test(pw)) score++;
+        if (/[0-9]/.test(pw)) score++;
+        if (/[^A-Za-z0-9]/.test(pw)) score++;
+        return score;
+      }
+
+      passwordInput.addEventListener("input", () => {
+        const score = passwordInput.value
+          ? getStrength(passwordInput.value)
+          : 0;
+        const level = strengthLevels[score];
+        strengthFill.style.width = level.width;
+        strengthFill.style.background = level.color;
+        strengthLabel.textContent = level.label;
+        strengthLabel.style.color = level.color;
+      });
+
+      // ---- Form validation ----
+      const form = document.getElementById("register-form");
+      const submitBtn = document.getElementById("submit-btn");
+
+      const fields = {
+        fullname:        document.getElementById("fullname"),
+        email:           document.getElementById("email"),
+        phone:           document.getElementById("phone"),
+        password:        document.getElementById("password"),
+        confirmPassword: document.getElementById("confirm-password"),
+        terms:           document.getElementById("terms"),
+        vehicle:         document.getElementById("vehicle"),
+      };
+
+      const errors = {
+        fullname:        document.getElementById("fullname-error"),
+        email:           document.getElementById("email-error"),
+        phone:           document.getElementById("phone-error"),
+        password:        document.getElementById("password-error"),
+        confirm:         document.getElementById("confirm-error"),
+        terms:           document.getElementById("terms-error"),
+        vehicle:         document.getElementById("vehicle-error"),
+        form:            document.getElementById("form-error"),
+      };
+
+      function showError(el, msg) {
+        el.textContent = msg;
+        el.style.display = "block";
+      }
+      function clearError(el) {
+        el.textContent = "";
+        el.style.display = "none";
+      }
+
+      // Clear on input
+      Object.keys(fields).forEach((key) => {
+        fields[key].addEventListener("input", () => {
+          if (errors[key]) clearError(errors[key]);
+        });
+      });
+
+      function getSelectedRole() {
+        const checked = document.querySelector('input[name="role"]:checked');
+        return checked ? checked.value : null;
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        // Clear all errors
+        Object.values(errors).forEach(clearError);
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^(\+234|0)[789][01]\d{8}$/;
+
+        // Full name
+        if (!fields.fullname.value.trim()) {
+          showError(errors.fullname, "Full name is required.");
+          valid = false;
+        } else if (fields.fullname.value.trim().length < 3) {
+          showError(errors.fullname, "Enter your full name.");
+          valid = false;
+        }
+
+        // Email
+        if (!fields.email.value.trim()) {
+          showError(errors.email, "Email is required.");
+          valid = false;
+        } else if (!emailRegex.test(fields.email.value.trim())) {
+          showError(errors.email, "Enter a valid email address.");
+          valid = false;
+        }
+
+        // Phone
+        if (!fields.phone.value.trim()) {
+          showError(errors.phone, "Phone number is required.");
+          valid = false;
+        } else if (!phoneRegex.test(fields.phone.value.replace(/\s/g, ""))) {
+          showError(errors.phone, "Enter a valid Nigerian phone number.");
+          valid = false;
+        }
+
+        // Vehicle (drivers only)
+        const role = getSelectedRole();
+        if (role === "DRIVER" && !fields.vehicle.value) {
+          showError(errors.vehicle, "Please select your vehicle type.");
+          valid = false;
+        }
+
+        // Password
+        if (!fields.password.value) {
+          showError(errors.password, "Password is required.");
+          valid = false;
+        } else if (fields.password.value.length < 8) {
+          showError(errors.password, "Password must be at least 8 characters.");
+          valid = false;
+        } else if (getStrength(fields.password.value) < 2) {
+          showError(errors.password, "Password is too weak. Add numbers or symbols.");
+          valid = false;
+        }
+
+        // Confirm password
+        if (!fields.confirmPassword.value) {
+          showError(errors.confirm, "Please confirm your password.");
+          valid = false;
+        } else if (fields.password.value !== fields.confirmPassword.value) {
+          showError(errors.confirm, "Passwords do not match.");
+          valid = false;
+        }
+
+        // Terms
+        if (!fields.terms.checked) {
+          showError(errors.terms, "You must accept the terms to continue.");
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        // Simulate API call (replace with real fetch to /api/auth/register later)
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Creating account…";
+
+        setTimeout(() => {
+          errors.form.style.color = "#22c55e";
+          errors.form.textContent = "✓ Account created! Redirecting to login…";
+          errors.form.style.display = "block";
+
+          // In Phase 4: redirect based on role
+          // window.location.href = 'login.html'
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Create Account";
+            errors.form.style.display = "none";
+          }, 2500);
+        }, 1400);
+      });
+    </script>
+
+  </body>
+</html>

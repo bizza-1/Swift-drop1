@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard – SwiftDrop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body class="dashboard-page">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <a href="../app.html" class="nav__logo">
+          Swift<span class="accent">Drop</span>
+        </a>
+        <button class="sidebar__close" id="sidebar-close" aria-label="Close menu">✕</button>
+      </div>
+
+      <div class="sidebar__user">
+        <div class="user-avatar">AO</div>
+        <div>
+          <p class="user-name">Adewale Okafor</p>
+          <p class="user-role">Customer</p>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav">
+        <ul>
+          <li>
+            <a href="dashboard.html" class="sidebar__link sidebar__link--active">
+              <span class="sidebar__icon">🏠</span> Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="create-delivery.html" class="sidebar__link">
+              <span class="sidebar__icon">➕</span> New Delivery
+            </a>
+          </li>
+          <li>
+            <a href="deliveries.html" class="sidebar__link">
+              <span class="sidebar__icon">📦</span> My Deliveries
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar__link">
+              <span class="sidebar__icon">👤</span> Profile
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <a href="../login.html" class="sidebar__link sidebar__link--logout">
+          <span class="sidebar__icon">🚪</span> Log Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Overlay for mobile sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <div class="dashboard-body">
+
+      <!-- Top bar -->
+      <header class="topbar">
+        <button class="topbar__menu-btn" id="menu-btn" aria-label="Open menu">
+          ☰
+        </button>
+        <div class="topbar__title">
+          <h1>Dashboard</h1>
+          <p class="topbar__date" id="topbar-date"></p>
+        </div>
+        <div class="topbar__actions">
+          <a href="create-delivery.html" class="btn btn--primary">
+            + New Delivery
+          </a>
+        </div>
+      </header>
+
+      <!-- Page content -->
+      <main class="dashboard-main">
+
+        <!-- ---- STAT CARDS ---- -->
+        <section class="stats-grid" aria-label="Summary statistics">
+
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--blue">📦</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Total Deliveries</p>
+              <p class="stat-card__value">24</p>
+              <p class="stat-card__change stat-card__change--up">↑ 3 this week</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--orange">🚚</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Active Deliveries</p>
+              <p class="stat-card__value">2</p>
+              <p class="stat-card__change">In progress now</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--green">✅</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Delivered</p>
+              <p class="stat-card__value">21</p>
+              <p class="stat-card__change stat-card__change--up">↑ 87.5% success</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--yellow">⏳</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Pending</p>
+              <p class="stat-card__value">1</p>
+              <p class="stat-card__change">Awaiting driver</p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ---- ACTIVE DELIVERIES ---- -->
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-header__title">Active Deliveries</h2>
+            <a href="deliveries.html" class="section-header__link">View all →</a>
+          </div>
+
+          <div class="active-deliveries">
+
+            <div class="delivery-card-full">
+              <div class="delivery-card-full__head">
+                <div>
+                  <span class="delivery-id">DEL-00482</span>
+                  <span class="status-badge status-badge--transit">In Transit</span>
+                </div>
+                <span class="delivery-time">Today, 2:30 PM</span>
+              </div>
+
+              <div class="delivery-route">
+                <div class="delivery-route__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <div>
+                    <p class="route-label">Pickup</p>
+                    <p class="route-address">23 Allen Ave, Ikeja, Lagos</p>
+                  </div>
+                </div>
+                <div class="route-connector"></div>
+                <div class="delivery-route__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <div>
+                    <p class="route-label">Destination</p>
+                    <p class="route-address">14 Admiralty Way, Lekki Phase 1</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="delivery-card-full__footer">
+                <div class="delivery-driver">
+                  <div class="driver-avatar driver-avatar--sm">AO</div>
+                  <div>
+                    <p class="driver-name">Adewale O. · Motorcycle</p>
+                    <p class="driver-eta">ETA: <strong>12 minutes</strong></p>
+                  </div>
+                </div>
+                <div class="delivery-progress-wrap">
+                  <div class="delivery-progress">
+                    <div class="delivery-progress__fill" style="width: 75%;"></div>
+                  </div>
+                  <p class="delivery-progress__label">In Transit</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="delivery-card-full">
+              <div class="delivery-card-full__head">
+                <div>
+                  <span class="delivery-id">DEL-00479</span>
+                  <span class="status-badge status-badge--accepted">Accepted</span>
+                </div>
+                <span class="delivery-time">Today, 1:15 PM</span>
+              </div>
+
+              <div class="delivery-route">
+                <div class="delivery-route__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <div>
+                    <p class="route-label">Pickup</p>
+                    <p class="route-address">5 Broad St, Lagos Island</p>
+                  </div>
+                </div>
+                <div class="route-connector"></div>
+                <div class="delivery-route__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <div>
+                    <p class="route-label">Destination</p>
+                    <p class="route-address">12 Awolowo Rd, Ikoyi</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="delivery-card-full__footer">
+                <div class="delivery-driver">
+                  <div class="driver-avatar driver-avatar--sm">KA</div>
+                  <div>
+                    <p class="driver-name">Kemi A. · Car</p>
+                    <p class="driver-eta">ETA: <strong>28 minutes</strong></p>
+                  </div>
+                </div>
+                <div class="delivery-progress-wrap">
+                  <div class="delivery-progress">
+                    <div class="delivery-progress__fill" style="width: 25%;"></div>
+                  </div>
+                  <p class="delivery-progress__label">Accepted</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ---- RECENT DELIVERIES TABLE ---- -->
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-header__title">Recent Deliveries</h2>
+            <a href="deliveries.html" class="section-header__link">View all →</a>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Destination</th>
+                  <th>Driver</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="delivery-id">DEL-00478</td>
+                  <td>Surulere, Lagos</td>
+                  <td>Emeka N.</td>
+                  <td>Jun 13, 2025</td>
+                  <td><span class="status-badge status-badge--delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td class="delivery-id">DEL-00477</td>
+                  <td>Yaba, Lagos</td>
+                  <td>Fatima B.</td>
+                  <td>Jun 12, 2025</td>
+                  <td><span class="status-badge status-badge--delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td class="delivery-id">DEL-00475</td>
+                  <td>Ajah, Lagos</td>
+                  <td>Tunde M.</td>
+                  <td>Jun 11, 2025</td>
+                  <td><span class="status-badge status-badge--delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td class="delivery-id">DEL-00471</td>
+                  <td>Gbagada, Lagos</td>
+                  <td>—</td>
+                  <td>Jun 10, 2025</td>
+                  <td><span class="status-badge status-badge--pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td class="delivery-id">DEL-00469</td>
+                  <td>Oshodi, Lagos</td>
+                  <td>Bola K.</td>
+                  <td>Jun 9, 2025</td>
+                  <td><span class="status-badge status-badge--delivered">Delivered</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ---- QUICK ACTIONS ---- -->
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-header__title">Quick Actions</h2>
+          </div>
+          <div class="quick-actions">
+            <a href="create-delivery.html" class="quick-action-card">
+              <span class="quick-action-card__icon">➕</span>
+              <span class="quick-action-card__label">New Delivery</span>
+            </a>
+            <a href="deliveries.html" class="quick-action-card">
+              <span class="quick-action-card__icon">📋</span>
+              <span class="quick-action-card__label">All Deliveries</span>
+            </a>
+            <a href="#" class="quick-action-card">
+              <span class="quick-action-card__icon">👤</span>
+              <span class="quick-action-card__label">Edit Profile</span>
+            </a>
+            <a href="#" class="quick-action-card">
+              <span class="quick-action-card__icon">🔔</span>
+              <span class="quick-action-card__label">Notifications</span>
+            </a>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script>
+      // Set today's date in topbar
+      const dateEl = document.getElementById("topbar-date");
+      dateEl.textContent = new Date().toLocaleDateString("en-NG", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+      });
+
+      // Mobile sidebar toggle
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebar-overlay");
+      const menuBtn = document.getElementById("menu-btn");
+      const closeBtn = document.getElementById("sidebar-close");
+
+      function openSidebar() {
+        sidebar.classList.add("sidebar--open");
+        overlay.classList.add("overlay--visible");
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("sidebar--open");
+        overlay.classList.remove("overlay--visible");
+      }
+
+      menuBtn.addEventListener("click", openSidebar);
+      closeBtn.addEventListener("click", closeSidebar);
+      overlay.addEventListener("click", closeSidebar);
+    </script>
+
+  </body>
+</html>

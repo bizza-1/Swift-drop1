@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwiftDrop – Smart Delivery Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <!-- ===================== HEADER / NAV ===================== -->
+    <header class="site-header">
+      <nav class="nav container">
+        <a href="app.html" class="nav__logo">
+          Swift<span class="accent">Drop</span>
+        </a>
+        <ul class="nav__links">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav__actions">
+          <a href="login.html" class="btn btn--ghost">Log In</a>
+          <a href="register.html" class="btn btn--primary">Get Started</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+
+      <!-- ===================== HERO ===================== -->
+      <section id="hero" class="hero">
+        <div class="container hero__inner">
+
+          <div class="hero__text">
+            <p class="hero__eyebrow">Smart Delivery Management</p>
+            <h1 class="hero__headline">
+              Deliver Faster.<br />
+              Track Everything.<br />
+              <span class="accent">Earn More.</span>
+            </h1>
+            <p class="hero__subtext">
+              SwiftDrop connects customers, drivers, and businesses on one
+              platform. Request pickups, track packages in real time, and
+              manage your entire delivery operation from one dashboard.
+            </p>
+            <div class="hero__ctas">
+              <a href="register.html" class="btn btn--primary btn--lg">
+                Send a Package
+              </a>
+              <a href="register.html?role=driver" class="btn btn--outline btn--lg">
+                Drive & Earn
+              </a>
+            </div>
+          </div>
+
+          <!-- Animated delivery status card — signature element -->
+          <div class="hero__card" aria-hidden="true">
+            <div class="delivery-card">
+              <div class="delivery-card__header">
+                <span class="delivery-card__id">DEL-00482</span>
+                <span class="delivery-card__status" id="js-status">PENDING</span>
+              </div>
+              <div class="delivery-card__route">
+                <div class="route__point">
+                  <span class="route__dot route__dot--pickup"></span>
+                  <div>
+                    <p class="route__label">Pickup</p>
+                    <p class="route__address">23 Allen Ave, Ikeja</p>
+                  </div>
+                </div>
+                <div class="route__line"></div>
+                <div class="route__point">
+                  <span class="route__dot route__dot--drop"></span>
+                  <div>
+                    <p class="route__label">Destination</p>
+                    <p class="route__address">14 Admiralty Way, Lekki</p>
+                  </div>
+                </div>
+              </div>
+              <div class="delivery-card__footer">
+                <div class="delivery-card__driver">
+                  <div class="driver-avatar">AO</div>
+                  <div>
+                    <p class="driver-name">Adewale O.</p>
+                    <p class="driver-vehicle">Motorcycle · Lagos</p>
+                  </div>
+                </div>
+                <div class="delivery-card__eta">
+                  <p class="eta-label">ETA</p>
+                  <p class="eta-time">12 min</p>
+                </div>
+              </div>
+              <!-- Progress bar -->
+              <div class="progress-track">
+                <div class="progress-fill" id="js-progress"></div>
+              </div>
+              <div class="progress-steps">
+                <span class="step" data-step="0">Pending</span>
+                <span class="step" data-step="1">Accepted</span>
+                <span class="step" data-step="2">Picked Up</span>
+                <span class="step" data-step="3">In Transit</span>
+                <span class="step" data-step="4">Delivered</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================== HOW IT WORKS ===================== -->
+      <section id="how-it-works" class="how-it-works">
+        <div class="container">
+          <p class="section__eyebrow">Simple Process</p>
+          <h2 class="section__title">How SwiftDrop Works</h2>
+          <p class="section__subtitle">
+            Three types of users, one seamless platform.
+          </p>
+
+          <div class="how-grid">
+
+            <div class="how-card">
+              <div class="how-card__number">01</div>
+              <div class="how-card__icon">📦</div>
+              <h3 class="how-card__title">Customer</h3>
+              <ol class="how-card__steps">
+                <li>Create an account</li>
+                <li>Request a delivery with pickup &amp; drop-off address</li>
+                <li>Track your package live</li>
+                <li>Receive confirmation on delivery</li>
+              </ol>
+            </div>
+
+            <div class="how-card how-card--featured">
+              <div class="how-card__number">02</div>
+              <div class="how-card__icon">🏍️</div>
+              <h3 class="how-card__title">Driver</h3>
+              <ol class="how-card__steps">
+                <li>Sign up and get approved</li>
+                <li>See available deliveries near you</li>
+                <li>Accept a job and pick up the package</li>
+                <li>Mark delivered and track your earnings</li>
+              </ol>
+            </div>
+
+            <div class="how-card">
+              <div class="how-card__number">03</div>
+              <div class="how-card__icon">🖥️</div>
+              <h3 class="how-card__title">Admin</h3>
+              <ol class="how-card__steps">
+                <li>Monitor all deliveries in real time</li>
+                <li>Approve and manage drivers</li>
+                <li>Handle disputes and support</li>
+                <li>View platform analytics</li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== FEATURES ===================== -->
+      <section id="features" class="features">
+        <div class="container">
+          <p class="section__eyebrow">Platform Features</p>
+          <h2 class="section__title">Everything You Need</h2>
+          <p class="section__subtitle">
+            Built for speed, reliability, and scale.
+          </p>
+
+          <div class="features-grid">
+
+            <article class="feature-card">
+              <div class="feature-card__icon">🔐</div>
+              <h3 class="feature-card__title">Secure Authentication</h3>
+              <p class="feature-card__desc">
+                JWT-based login with role-specific dashboards for customers,
+                drivers, and admins. Your data stays protected.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card__icon">📍</div>
+              <h3 class="feature-card__title">Live Delivery Tracking</h3>
+              <p class="feature-card__desc">
+                Watch your package move from pickup to doorstep with
+                real-time status updates at every stage.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card__icon">🏍️</div>
+              <h3 class="feature-card__title">Driver Management</h3>
+              <p class="feature-card__desc">
+                Admins approve drivers, assign deliveries, and monitor
+                performance. Drivers see jobs and update statuses instantly.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card__icon">📊</div>
+              <h3 class="feature-card__title">Analytics Dashboard</h3>
+              <p class="feature-card__desc">
+                Track total deliveries, active drivers, revenue trends, and
+                platform health from one admin dashboard.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card__icon">💰</div>
+              <h3 class="feature-card__title">Earnings Tracker</h3>
+              <p class="feature-card__desc">
+                Drivers can view total earnings, completed jobs, and payment
+                history — all in one clean view.
+              </p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-card__icon">📱</div>
+              <h3 class="feature-card__title">Mobile-Ready Design</h3>
+              <p class="feature-card__desc">
+                Fully responsive across all screens. Works perfectly on
+                phones, tablets, and desktops without an app install.
+              </p>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CONTACT ===================== -->
+      <section id="contact" class="contact">
+        <div class="container contact__inner">
+          <div class="contact__text">
+            <p class="section__eyebrow">Get In Touch</p>
+            <h2 class="section__title">Have Questions?</h2>
+            <p class="section__subtitle">
+              Whether you're a business looking to streamline deliveries or a
+              driver ready to earn, we'd love to hear from you.
+            </p>
+            <ul class="contact__details">
+              <li>📧 hello@swiftdrop.ng</li>
+              <li>📞 +234 800 000 0000</li>
+              <li>📍 Lagos, Nigeria</li>
+            </ul>
+          </div>
+          <form class="contact__form" novalidate>
+            <div class="form-group">
+              <label for="contact-name">Full Name</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                placeholder="Adewale Okafor"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email Address</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                rows="4"
+                placeholder="Tell us how we can help..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--lg btn--full">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="site-footer">
+      <div class="container footer__inner">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo">
+            Swift<span class="accent">Drop</span>
+          </a>
+          <p class="footer__tagline">
+            Fast deliveries. Real tracking. Built in Nigeria.
+          </p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <div class="footer__col">
+            <h4>Platform</h4>
+            <ul>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#features">Features</a></li>
+              <li><a href="register.html">Sign Up</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Account</h4>
+            <ul>
+              <li><a href="login.html">Log In</a></li>
+              <li><a href="register.html">Register as Customer</a></li>
+              <li><a href="register.html?role=driver">Register as Driver</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#contact">Contact Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom container">
+        <p>&copy; 2025 SwiftDrop. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Animated delivery status cycling
+      const statuses = ["PENDING", "ACCEPTED", "PICKED UP", "IN TRANSIT", "DELIVERED"];
+      const statusColors = ["#94a3b8", "#facc15", "#60a5fa", "#FF6B2B", "#22c55e"];
+      const progressWidths = ["5%", "25%", "50%", "75%", "100%"];
+
+      let currentStep = 0;
+      const statusEl = document.getElementById("js-status");
+      const progressEl = document.getElementById("js-progress");
+      const stepEls = document.querySelectorAll(".step");
+
+      function updateStatus() {
+        statusEl.textContent = statuses[currentStep];
+        statusEl.style.background = statusColors[currentStep] + "22";
+        statusEl.style.color = statusColors[currentStep];
+        statusEl.style.borderColor = statusColors[currentStep];
+        progressEl.style.width = progressWidths[currentStep];
+        progressEl.style.background = statusColors[currentStep];
+
+        stepEls.forEach((el, i) => {
+          el.classList.toggle("step--active", i === currentStep);
+          el.classList.toggle("step--done", i < currentStep);
+        });
+
+        currentStep = (currentStep + 1) % statuses.length;
+      }
+
+      updateStatus();
+      setInterval(updateStatus, 2000);
+
+      // Smooth scroll for nav links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+
+  </body>
+</html>
