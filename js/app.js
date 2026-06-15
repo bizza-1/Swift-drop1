@@ -571,6 +571,23 @@ function initDeliveriesPage() {
   const empty = safeQuery("#empty-state");
   const searchInput = safeQuery("#search-input");
   const modalClose = safeQuery("#modal-close");
+  const trackButtons = safeQueryAll(".track-button");
+
+  if (trackButtons.length) {
+    trackButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        openTracking(
+          button.dataset.trackId || "",
+          button.dataset.trackStatus || "",
+          button.dataset.trackPickup || "",
+          button.dataset.trackDest || "",
+          button.dataset.trackDriver || "",
+          button.dataset.trackEta || ""
+        );
+      });
+    });
+  }
+
   const statusOrder = ["PENDING", "ACCEPTED", "PICKED_UP", "IN_TRANSIT", "DELIVERED"];
   const tlIds = ["tl-pending", "tl-accepted", "tl-pickedup", "tl-transit", "tl-delivered"];
 
