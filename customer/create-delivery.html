@@ -6,14 +6,22 @@
     <title>New Delivery – SwiftDrop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/create-delivery.css" />
   </head>
   <body class="dashboard-page">
+
+    <!-- ===================== SIDEBAR ===================== -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__header">
-        <a href="../index.html" class="nav__logo">Swift<span class="accent">Drop</span></a>
+        <a href="../index.html" class="nav__logo">
+          Swift<span class="accent">Drop</span>
+        </a>
         <button class="sidebar__close" id="sidebar-close" aria-label="Close menu">✕</button>
       </div>
       <div class="sidebar__user">
@@ -25,49 +33,512 @@
       </div>
       <nav class="sidebar__nav">
         <ul>
-          <li><a href="dashboard.html" class="sidebar__link">🏠 Dashboard</a></li>
-          <li><a href="create-delivery.html" class="sidebar__link sidebar__link--active">➕ New Delivery</a></li>
-          <li><a href="deliveries.html" class="sidebar__link">📦 My Deliveries</a></li>
-          <li><a href="#" class="sidebar__link">👤 Profile</a></li>
+          <li><a href="dashboard.html" class="sidebar__link"><span class="sidebar__icon">🏠</span> Dashboard</a></li>
+          <li><a href="create-delivery.html" class="sidebar__link sidebar__link--active"><span class="sidebar__icon">➕</span> New Delivery</a></li>
+          <li><a href="deliveries.html" class="sidebar__link"><span class="sidebar__icon">📦</span> My Deliveries</a></li>
+          <li><a href="#" class="sidebar__link"><span class="sidebar__icon">👤</span> Profile</a></li>
         </ul>
       </nav>
       <div class="sidebar__footer">
-        <a href="../login.html" class="sidebar__link sidebar__link--logout">🚪 Log Out</a>
+        <a href="../login.html" class="sidebar__link sidebar__link--logout">
+          <span class="sidebar__icon">🚪</span> Log Out
+        </a>
       </div>
     </aside>
+
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
     <div class="dashboard-body">
+
       <header class="topbar">
         <button class="topbar__menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
         <div class="topbar__title">
           <h1>New Delivery</h1>
           <p class="topbar__date" id="topbar-date"></p>
         </div>
+        <div class="topbar__actions">
+          <a href="dashboard.html" class="btn btn--ghost">← Back</a>
+        </div>
       </header>
+
       <main class="dashboard-main">
-        <section class="dashboard-section">
-          <div class="section-header">
-            <h2 class="section-header__title">Create a Delivery</h2>
+        <div class="create-delivery-layout">
+
+          <!-- ===================== FORM ===================== -->
+          <div class="create-delivery-form-wrap">
+            <form class="create-delivery-form" id="delivery-form" novalidate>
+
+              <!-- STEP INDICATOR -->
+              <div class="step-indicator">
+                <div class="step-indicator__item step-indicator__item--active" data-step="1">
+                  <span class="step-indicator__num">1</span>
+                  <span class="step-indicator__label">Package</span>
+                </div>
+                <div class="step-indicator__line"></div>
+                <div class="step-indicator__item" data-step="2">
+                  <span class="step-indicator__num">2</span>
+                  <span class="step-indicator__label">Addresses</span>
+                </div>
+                <div class="step-indicator__line"></div>
+                <div class="step-indicator__item" data-step="3">
+                  <span class="step-indicator__num">3</span>
+                  <span class="step-indicator__label">Review</span>
+                </div>
+              </div>
+
+              <!-- ===== STEP 1: PACKAGE DETAILS ===== -->
+              <fieldset class="form-step" id="step-1">
+                <legend class="form-step__title">Package Details</legend>
+                <p class="form-step__sub">Tell us what you're sending.</p>
+
+                <div class="form-grid">
+
+                  <div class="form-group form-group--full">
+                    <label for="package-desc">Package Description <span class="required">*</span></label>
+                    <textarea
+                      id="package-desc"
+                      name="package_description"
+                      rows="3"
+                      placeholder="e.g. Two bags of rice, fragile glassware, laptop accessories…"
+                      required
+                    ></textarea>
+                    <span class="field-error" id="package-desc-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="package-size">Package Size <span class="required">*</span></label>
+                    <select id="package-size" name="package_size" required>
+                      <option value="">Select size</option>
+                      <option value="SMALL">Small — fits in a backpack</option>
+                      <option value="MEDIUM">Medium — fits in a box</option>
+                      <option value="LARGE">Large — needs a car boot</option>
+                      <option value="EXTRA_LARGE">Extra Large — van/truck required</option>
+                    </select>
+                    <span class="field-error" id="package-size-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="package-weight">Estimated Weight</label>
+                    <div class="input-unit-wrap">
+                      <input
+                        type="number"
+                        id="package-weight"
+                        name="package_weight"
+                        placeholder="0.0"
+                        min="0"
+                        step="0.1"
+                      />
+                      <span class="input-unit">kg</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <label>Package Fragility</label>
+                    <div class="toggle-group">
+                      <label class="toggle-option" for="fragile-no">
+                        <input type="radio" id="fragile-no" name="fragile" value="false" checked />
+                        <span class="toggle-option__label">Not Fragile</span>
+                      </label>
+                      <label class="toggle-option" for="fragile-yes">
+                        <input type="radio" id="fragile-yes" name="fragile" value="true" />
+                        <span class="toggle-option__label">⚠️ Fragile — Handle with care</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <label for="special-instructions">Special Instructions</label>
+                    <textarea
+                      id="special-instructions"
+                      name="special_instructions"
+                      rows="2"
+                      placeholder="e.g. Call recipient before drop-off. Leave at gate if no answer."
+                    ></textarea>
+                  </div>
+
+                </div>
+
+                <div class="form-step__actions">
+                  <button type="button" class="btn btn--primary btn--lg" id="next-1">
+                    Continue to Addresses →
+                  </button>
+                </div>
+              </fieldset>
+
+              <!-- ===== STEP 2: ADDRESSES ===== -->
+              <fieldset class="form-step form-step--hidden" id="step-2">
+                <legend class="form-step__title">Pickup & Destination</legend>
+                <p class="form-step__sub">Where are we picking up and dropping off?</p>
+
+                <div class="form-grid">
+
+                  <!-- PICKUP -->
+                  <div class="form-group form-group--full">
+                    <label for="pickup-address">Pickup Address <span class="required">*</span></label>
+                    <div class="address-input-wrap">
+                      <span class="address-input-icon">📍</span>
+                      <input
+                        type="text"
+                        id="pickup-address"
+                        name="pickup_address"
+                        placeholder="e.g. 23 Allen Ave, Ikeja, Lagos"
+                        required
+                      />
+                    </div>
+                    <span class="field-error" id="pickup-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pickup-name">Sender Name <span class="required">*</span></label>
+                    <input
+                      type="text"
+                      id="pickup-name"
+                      name="sender_name"
+                      placeholder="Adewale Okafor"
+                      required
+                    />
+                    <span class="field-error" id="pickup-name-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pickup-phone">Sender Phone <span class="required">*</span></label>
+                    <input
+                      type="tel"
+                      id="pickup-phone"
+                      name="sender_phone"
+                      placeholder="+234 800 000 0000"
+                      required
+                    />
+                    <span class="field-error" id="pickup-phone-error"></span>
+                  </div>
+
+                  <div class="form-divider">
+                    <span>Drop-off Details</span>
+                  </div>
+
+                  <!-- DESTINATION -->
+                  <div class="form-group form-group--full">
+                    <label for="dest-address">Destination Address <span class="required">*</span></label>
+                    <div class="address-input-wrap">
+                      <span class="address-input-icon">🏁</span>
+                      <input
+                        type="text"
+                        id="dest-address"
+                        name="destination_address"
+                        placeholder="e.g. 14 Admiralty Way, Lekki Phase 1"
+                        required
+                      />
+                    </div>
+                    <span class="field-error" id="dest-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="recipient-name">Recipient Name <span class="required">*</span></label>
+                    <input
+                      type="text"
+                      id="recipient-name"
+                      name="recipient_name"
+                      placeholder="Chioma Eze"
+                      required
+                    />
+                    <span class="field-error" id="recipient-name-error"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="recipient-phone">Recipient Phone <span class="required">*</span></label>
+                    <input
+                      type="tel"
+                      id="recipient-phone"
+                      name="recipient_phone"
+                      placeholder="+234 800 000 0000"
+                      required
+                    />
+                    <span class="field-error" id="recipient-phone-error"></span>
+                  </div>
+
+                  <div class="form-group form-group--full">
+                    <label for="delivery-time">Preferred Delivery Time</label>
+                    <select id="delivery-time" name="delivery_time">
+                      <option value="ASAP">As soon as possible</option>
+                      <option value="MORNING">Morning (8AM – 12PM)</option>
+                      <option value="AFTERNOON">Afternoon (12PM – 5PM)</option>
+                      <option value="EVENING">Evening (5PM – 9PM)</option>
+                    </select>
+                  </div>
+
+                </div>
+
+                <div class="form-step__actions form-step__actions--between">
+                  <button type="button" class="btn btn--ghost btn--lg" id="back-2">
+                    ← Back
+                  </button>
+                  <button type="button" class="btn btn--primary btn--lg" id="next-2">
+                    Review Order →
+                  </button>
+                </div>
+              </fieldset>
+
+              <!-- ===== STEP 3: REVIEW ===== -->
+              <fieldset class="form-step form-step--hidden" id="step-3">
+                <legend class="form-step__title">Review Your Delivery</legend>
+                <p class="form-step__sub">Confirm the details before submitting.</p>
+
+                <div class="review-block" id="review-block">
+                  <!-- Populated by JS -->
+                </div>
+
+                <div class="form-error" id="form-error" role="alert"></div>
+
+                <div class="form-step__actions form-step__actions--between">
+                  <button type="button" class="btn btn--ghost btn--lg" id="back-3">
+                    ← Edit
+                  </button>
+                  <button type="submit" class="btn btn--primary btn--lg" id="submit-btn">
+                    🚀 Place Delivery Request
+                  </button>
+                </div>
+              </fieldset>
+
+              <!-- ===== SUCCESS STATE ===== -->
+              <div class="delivery-success form-step--hidden" id="success-state">
+                <div class="success-icon">✅</div>
+                <h2 class="success-title">Delivery Requested!</h2>
+                <p class="success-sub">
+                  Your request has been placed. A driver will be assigned shortly.
+                </p>
+                <div class="success-id" id="success-id">DEL-00485</div>
+                <div class="success-actions">
+                  <a href="deliveries.html" class="btn btn--primary btn--lg">Track Deliveries</a>
+                  <a href="create-delivery.html" class="btn btn--outline btn--lg">New Delivery</a>
+                </div>
+              </div>
+
+            </form>
           </div>
-          <div class="feature-card" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);">
-            <p style="color: var(--color-muted); margin-bottom: 1rem;">This placeholder page is connected and ready for your delivery form.</p>
-            <p style="color: var(--color-text);">Add your pickup address, drop-off details, package size, and preferred delivery time here.</p>
-          </div>
-        </section>
+
+          <!-- ===================== SIDEBAR SUMMARY ===================== -->
+          <aside class="order-summary">
+            <div class="order-summary__card">
+              <h3 class="order-summary__title">Order Summary</h3>
+
+              <div class="summary-row">
+                <span class="summary-label">Package</span>
+                <span class="summary-value" id="sum-package">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Size</span>
+                <span class="summary-value" id="sum-size">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Pickup</span>
+                <span class="summary-value" id="sum-pickup">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Destination</span>
+                <span class="summary-value" id="sum-dest">—</span>
+              </div>
+
+              <div class="summary-divider"></div>
+
+              <div class="summary-row summary-row--total">
+                <span class="summary-label">Est. Cost</span>
+                <span class="summary-value summary-value--price" id="sum-price">₦ —</span>
+              </div>
+
+              <p class="summary-note">
+                Final price confirmed after driver accepts. No upfront payment required.
+              </p>
+            </div>
+
+            <div class="order-summary__card order-summary__card--info">
+              <h4 class="order-summary__subtitle">📋 What happens next?</h4>
+              <ol class="what-next">
+                <li>Your request goes live immediately</li>
+                <li>A nearby driver accepts the job</li>
+                <li>Driver picks up your package</li>
+                <li>You track delivery in real time</li>
+                <li>Recipient gets the package ✅</li>
+              </ol>
+            </div>
+          </aside>
+
+        </div>
       </main>
     </div>
+
     <script>
-      const dateEl = document.getElementById("topbar-date");
-      dateEl.textContent = new Date().toLocaleDateString("en-NG", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("sidebar-overlay");
-      const menuBtn = document.getElementById("menu-btn");
+      // ---- Date ----
+      document.getElementById("topbar-date").textContent = new Date().toLocaleDateString("en-NG", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+      });
+
+      // ---- Sidebar ----
+      const sidebar  = document.getElementById("sidebar");
+      const overlay  = document.getElementById("sidebar-overlay");
+      const menuBtn  = document.getElementById("menu-btn");
       const closeBtn = document.getElementById("sidebar-close");
-      function openSidebar() { sidebar.classList.add("sidebar--open"); overlay.classList.add("overlay--visible"); }
-      function closeSidebar() { sidebar.classList.remove("sidebar--open"); overlay.classList.remove("overlay--visible"); }
-      menuBtn.addEventListener("click", openSidebar);
-      closeBtn.addEventListener("click", closeSidebar);
-      overlay.addEventListener("click", closeSidebar);
+      menuBtn.addEventListener("click", () => { sidebar.classList.add("sidebar--open"); overlay.classList.add("overlay--visible"); });
+      closeBtn.addEventListener("click", () => { sidebar.classList.remove("sidebar--open"); overlay.classList.remove("overlay--visible"); });
+      overlay.addEventListener("click",  () => { sidebar.classList.remove("sidebar--open"); overlay.classList.remove("overlay--visible"); });
+
+      // ---- Step navigation ----
+      const steps = [
+        document.getElementById("step-1"),
+        document.getElementById("step-2"),
+        document.getElementById("step-3"),
+      ];
+      const indicators = document.querySelectorAll(".step-indicator__item");
+
+      function showStep(n) {
+        steps.forEach((s, i) => {
+          s.classList.toggle("form-step--hidden", i !== n);
+        });
+        indicators.forEach((el, i) => {
+          el.classList.toggle("step-indicator__item--active", i === n);
+          el.classList.toggle("step-indicator__item--done", i < n);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // ---- Field helpers ----
+      function showError(el, msg) { el.textContent = msg; el.style.display = "block"; }
+      function clearError(el)     { el.textContent = "";  el.style.display = "none"; }
+
+      const phoneRegex = /^(\+234|0)[789][01]\d{8}$/;
+
+      // ---- Step 1 validation ----
+      document.getElementById("next-1").addEventListener("click", () => {
+        const desc  = document.getElementById("package-desc");
+        const size  = document.getElementById("package-size");
+        const descE = document.getElementById("package-desc-error");
+        const sizeE = document.getElementById("package-size-error");
+        let valid = true;
+        clearError(descE); clearError(sizeE);
+
+        if (!desc.value.trim()) { showError(descE, "Package description is required."); valid = false; }
+        if (!size.value)        { showError(sizeE, "Please select a package size.");    valid = false; }
+        if (!valid) return;
+
+        updateSummary();
+        showStep(1);
+      });
+
+      // ---- Step 2 validation ----
+      document.getElementById("next-2").addEventListener("click", () => {
+        const fields = [
+          { el: document.getElementById("pickup-address"), errId: "pickup-error",        msg: "Pickup address is required." },
+          { el: document.getElementById("pickup-name"),    errId: "pickup-name-error",   msg: "Sender name is required." },
+          { el: document.getElementById("pickup-phone"),   errId: "pickup-phone-error",  msg: "Valid Nigerian phone required.", phone: true },
+          { el: document.getElementById("dest-address"),   errId: "dest-error",          msg: "Destination address is required." },
+          { el: document.getElementById("recipient-name"), errId: "recipient-name-error",msg: "Recipient name is required." },
+          { el: document.getElementById("recipient-phone"),errId: "recipient-phone-error",msg: "Valid Nigerian phone required.", phone: true },
+        ];
+
+        let valid = true;
+        fields.forEach(({ el, errId, msg, phone }) => {
+          const errEl = document.getElementById(errId);
+          clearError(errEl);
+          const val = el.value.trim().replace(/\s/g, "");
+          if (!el.value.trim()) {
+            showError(errEl, msg); valid = false;
+          } else if (phone && !phoneRegex.test(val)) {
+            showError(errEl, "Enter a valid Nigerian phone number."); valid = false;
+          }
+        });
+
+        if (!valid) return;
+        updateSummary();
+        buildReview();
+        showStep(2);
+      });
+
+      // ---- Back buttons ----
+      document.getElementById("back-2").addEventListener("click", () => showStep(0));
+      document.getElementById("back-3").addEventListener("click", () => showStep(1));
+
+      // ---- Live summary update ----
+      function updateSummary() {
+        const desc    = document.getElementById("package-desc").value.trim();
+        const size    = document.getElementById("package-size");
+        const pickup  = document.getElementById("pickup-address").value.trim();
+        const dest    = document.getElementById("dest-address").value.trim();
+
+        const sizeText = size.options[size.selectedIndex]?.text || "—";
+        const prices   = { SMALL: 800, MEDIUM: 1500, LARGE: 2500, EXTRA_LARGE: 4000 };
+        const price    = prices[size.value];
+
+        document.getElementById("sum-package").textContent  = desc  || "—";
+        document.getElementById("sum-size").textContent     = sizeText !== "Select size" ? sizeText : "—";
+        document.getElementById("sum-pickup").textContent   = pickup || "—";
+        document.getElementById("sum-dest").textContent     = dest   || "—";
+        document.getElementById("sum-price").textContent    = price  ? `₦ ${price.toLocaleString()}` : "₦ —";
+      }
+
+      // Listen to fields live
+      ["package-desc","package-size","pickup-address","dest-address"].forEach(id => {
+        document.getElementById(id).addEventListener("input", updateSummary);
+        document.getElementById(id).addEventListener("change", updateSummary);
+      });
+
+      // ---- Build review block ----
+      function buildReview() {
+        const get = (id) => document.getElementById(id).value.trim();
+        const size = document.getElementById("package-size");
+        const sizeText = size.options[size.selectedIndex]?.text || "—";
+        const fragile = document.querySelector('input[name="fragile"]:checked').value === "true";
+        const prices = { SMALL: 800, MEDIUM: 1500, LARGE: 2500, EXTRA_LARGE: 4000 };
+        const price = prices[size.value];
+
+        document.getElementById("review-block").innerHTML = `
+          <div class="review-section">
+            <h4 class="review-section__title">📦 Package</h4>
+            <div class="review-row"><span>Description</span><span>${get("package-desc")}</span></div>
+            <div class="review-row"><span>Size</span><span>${sizeText}</span></div>
+            <div class="review-row"><span>Weight</span><span>${get("package-weight") || "Not specified"} ${get("package-weight") ? "kg" : ""}</span></div>
+            <div class="review-row"><span>Fragile</span><span>${fragile ? "⚠️ Yes" : "No"}</span></div>
+            ${get("special-instructions") ? `<div class="review-row"><span>Instructions</span><span>${get("special-instructions")}</span></div>` : ""}
+          </div>
+          <div class="review-section">
+            <h4 class="review-section__title">📍 Pickup</h4>
+            <div class="review-row"><span>Address</span><span>${get("pickup-address")}</span></div>
+            <div class="review-row"><span>Sender</span><span>${get("pickup-name")}</span></div>
+            <div class="review-row"><span>Phone</span><span>${get("pickup-phone")}</span></div>
+          </div>
+          <div class="review-section">
+            <h4 class="review-section__title">🏁 Destination</h4>
+            <div class="review-row"><span>Address</span><span>${get("dest-address")}</span></div>
+            <div class="review-row"><span>Recipient</span><span>${get("recipient-name")}</span></div>
+            <div class="review-row"><span>Phone</span><span>${get("recipient-phone")}</span></div>
+          </div>
+          <div class="review-section review-section--price">
+            <div class="review-row review-row--total">
+              <span>Estimated Cost</span>
+              <span class="review-price">${price ? `₦ ${price.toLocaleString()}` : "To be confirmed"}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      // ---- Form submit ----
+      document.getElementById("delivery-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("submit-btn");
+        btn.disabled = true;
+        btn.textContent = "Placing request…";
+
+        // Simulate API POST /api/deliveries
+        setTimeout(() => {
+          steps.forEach(s => s.classList.add("form-step--hidden"));
+          const successState = document.getElementById("success-state");
+          successState.classList.remove("form-step--hidden");
+
+          // Generate a fake delivery ID (backend will give real one in Phase 4)
+          const fakeId = "DEL-00" + Math.floor(480 + Math.random() * 20);
+          document.getElementById("success-id").textContent = fakeId;
+        }, 1600);
+      });
     </script>
+
   </body>
 </html>
