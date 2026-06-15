@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deliveries – SwiftDrop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body class="dashboard-page">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <a href="../index.html" class="nav__logo">Swift<span class="accent">Drop</span></a>
+        <button class="sidebar__close" id="sidebar-close" aria-label="Close menu">✕</button>
+      </div>
+      <div class="sidebar__user">
+        <div class="user-avatar">AO</div>
+        <div>
+          <p class="user-name">Adewale Okafor</p>
+          <p class="user-role">Customer</p>
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="dashboard.html" class="sidebar__link">🏠 Dashboard</a></li>
+          <li><a href="create-delivery.html" class="sidebar__link">➕ New Delivery</a></li>
+          <li><a href="deliveries.html" class="sidebar__link sidebar__link--active">📦 My Deliveries</a></li>
+          <li><a href="#" class="sidebar__link">👤 Profile</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar__footer">
+        <a href="../login.html" class="sidebar__link sidebar__link--logout">🚪 Log Out</a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="dashboard-body">
+      <header class="topbar">
+        <button class="topbar__menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
+        <div class="topbar__title">
+          <h1>My Deliveries</h1>
+          <p class="topbar__date" id="topbar-date"></p>
+        </div>
+      </header>
+      <main class="dashboard-main">
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-header__title">Delivery History</h2>
+          </div>
+          <div class="table-wrap" style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1rem; border-radius: var(--radius-md);">
+            <table class="data-table" style="width: 100%; border-collapse: collapse; color: var(--color-text);">
+              <thead>
+                <tr style="text-align: left; color: var(--color-muted); border-bottom: 1px solid var(--color-border);">
+                  <th style="padding: 0.75rem;">ID</th>
+                  <th style="padding: 0.75rem;">Destination</th>
+                  <th style="padding: 0.75rem;">Driver</th>
+                  <th style="padding: 0.75rem;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding: 0.75rem;">DEL-00482</td><td style="padding: 0.75rem;">Lekki, Lagos</td><td style="padding: 0.75rem;">Adewale O.</td><td style="padding: 0.75rem; color: #facc15;">In Transit</td></tr>
+                <tr><td style="padding: 0.75rem;">DEL-00479</td><td style="padding: 0.75rem;">Ikoyi, Lagos</td><td style="padding: 0.75rem;">Kemi A.</td><td style="padding: 0.75rem; color: #22c55e;">Delivered</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      const dateEl = document.getElementById("topbar-date");
+      dateEl.textContent = new Date().toLocaleDateString("en-NG", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebar-overlay");
+      const menuBtn = document.getElementById("menu-btn");
+      const closeBtn = document.getElementById("sidebar-close");
+      function openSidebar() { sidebar.classList.add("sidebar--open"); overlay.classList.add("overlay--visible"); }
+      function closeSidebar() { sidebar.classList.remove("sidebar--open"); overlay.classList.remove("overlay--visible"); }
+      menuBtn.addEventListener("click", openSidebar);
+      closeBtn.addEventListener("click", closeSidebar);
+      overlay.addEventListener("click", closeSidebar);
+    </script>
+  </body>
+</html>

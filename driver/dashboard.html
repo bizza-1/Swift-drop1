@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Driver Dashboard – SwiftDrop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body class="dashboard-page">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <a href="../index.html" class="nav__logo">Swift<span class="accent">Drop</span></a>
+        <button class="sidebar__close" id="sidebar-close" aria-label="Close menu">✕</button>
+      </div>
+      <div class="sidebar__user">
+        <div class="user-avatar">KA</div>
+        <div>
+          <p class="user-name">Kemi Adebola</p>
+          <p class="user-role">Driver</p>
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="dashboard.html" class="sidebar__link sidebar__link--active">🏠 Dashboard</a></li>
+          <li><a href="#" class="sidebar__link">📍 Available Jobs</a></li>
+          <li><a href="#" class="sidebar__link">💰 Earnings</a></li>
+          <li><a href="#" class="sidebar__link">👤 Profile</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar__footer">
+        <a href="../login.html" class="sidebar__link sidebar__link--logout">🚪 Log Out</a>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <div class="dashboard-body">
+      <header class="topbar">
+        <button class="topbar__menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
+        <div class="topbar__title">
+          <h1>Driver Dashboard</h1>
+          <p class="topbar__date" id="topbar-date"></p>
+        </div>
+      </header>
+      <main class="dashboard-main">
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-header__title">Today’s Deliveries</h2>
+          </div>
+          <div class="feature-card" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);">
+            <p style="color: var(--color-muted);">This is a placeholder driver dashboard page connected to login and the site structure.</p>
+            <p style="color: var(--color-text);">Replace this with your delivery queue, map view, and earnings summary.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      const dateEl = document.getElementById("topbar-date");
+      dateEl.textContent = new Date().toLocaleDateString("en-NG", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("sidebar-overlay");
+      const menuBtn = document.getElementById("menu-btn");
+      const closeBtn = document.getElementById("sidebar-close");
+      function openSidebar() { sidebar.classList.add("sidebar--open"); overlay.classList.add("overlay--visible"); }
+      function closeSidebar() { sidebar.classList.remove("sidebar--open"); overlay.classList.remove("overlay--visible"); }
+      menuBtn.addEventListener("click", openSidebar);
+      closeBtn.addEventListener("click", closeSidebar);
+      overlay.addEventListener("click", closeSidebar);
+    </script>
+  </body>
+</html>

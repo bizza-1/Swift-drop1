@@ -17,7 +17,7 @@
 
     <!-- ===================== HEADER ===================== -->
     <header class="auth-header">
-      <a href="app.html" class="nav__logo">
+      <a href="index.html" class="nav__logo">
         Swift<span class="accent">Drop</span>
       </a>
       <p class="auth-header__hint">
@@ -254,10 +254,26 @@
       const roleInputs = document.querySelectorAll('input[name="role"]');
       const vehicleGroup = document.getElementById("vehicle-group");
 
+      function setRole(role) {
+        roleInputs.forEach((input) => {
+          input.checked = input.value === role;
+        });
+        vehicleGroup.style.display = role === "DRIVER" ? "flex" : "none";
+      }
+
+      function getQueryParam(name) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(name);
+      }
+
+      const initialRole = getQueryParam("role");
+      if (initialRole === "driver") {
+        setRole("DRIVER");
+      }
+
       roleInputs.forEach((input) => {
         input.addEventListener("change", () => {
-          vehicleGroup.style.display =
-            input.value === "DRIVER" ? "flex" : "none";
+          setRole(input.value);
         });
       });
 
@@ -422,13 +438,9 @@
           errors.form.textContent = "✓ Account created! Redirecting to login…";
           errors.form.style.display = "block";
 
-          // In Phase 4: redirect based on role
-          // window.location.href = 'login.html'
           setTimeout(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Create Account";
-            errors.form.style.display = "none";
-          }, 2500);
+            window.location.href = "login.html";
+          }, 1400);
         }, 1400);
       });
     </script>

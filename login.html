@@ -17,7 +17,7 @@
 
     <!-- ===================== HEADER ===================== -->
     <header class="auth-header">
-      <a href="app.html" class="nav__logo">
+      <a href="index.html" class="nav__logo">
         Swift<span class="accent">Drop</span>
       </a>
       <p class="auth-header__hint">
@@ -226,18 +226,13 @@
         submitBtn.textContent = "Logging in…";
 
         setTimeout(() => {
-          // Placeholder: show success or error
           formError.style.color = "#22c55e";
           formError.textContent = "✓ Login successful! Redirecting…";
           formError.style.display = "block";
 
-          // In Phase 4 this will redirect based on user role from JWT
-          // e.g. window.location.href = 'customer/dashboard.html'
           setTimeout(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Log In";
-            formError.style.display = "none";
-          }, 2000);
+            window.location.href = "customer/dashboard.html";
+          }, 1200);
         }, 1200);
       });
     </script>
