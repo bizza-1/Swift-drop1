@@ -3,14 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Deliveries – SwiftDrop</title>
+    <title>My Deliveries – SwiftDrop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/deliveries.css" />
   </head>
   <body class="dashboard-page">
+
+    <!-- ===================== SIDEBAR ===================== -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__header">
         <a href="../index.html" class="nav__logo">Swift<span class="accent">Drop</span></a>
@@ -25,61 +31,398 @@
       </div>
       <nav class="sidebar__nav">
         <ul>
-          <li><a href="dashboard.html" class="sidebar__link">🏠 Dashboard</a></li>
-          <li><a href="create-delivery.html" class="sidebar__link">➕ New Delivery</a></li>
-          <li><a href="deliveries.html" class="sidebar__link sidebar__link--active">📦 My Deliveries</a></li>
-          <li><a href="#" class="sidebar__link">👤 Profile</a></li>
+          <li><a href="dashboard.html"       class="sidebar__link"><span class="sidebar__icon">🏠</span> Dashboard</a></li>
+          <li><a href="create-delivery.html" class="sidebar__link"><span class="sidebar__icon">➕</span> New Delivery</a></li>
+          <li><a href="deliveries.html"      class="sidebar__link sidebar__link--active"><span class="sidebar__icon">📦</span> My Deliveries</a></li>
+          <li><a href="#"                    class="sidebar__link"><span class="sidebar__icon">👤</span> Profile</a></li>
         </ul>
       </nav>
       <div class="sidebar__footer">
-        <a href="../login.html" class="sidebar__link sidebar__link--logout">🚪 Log Out</a>
+        <a href="../login.html" class="sidebar__link sidebar__link--logout">
+          <span class="sidebar__icon">🚪</span> Log Out
+        </a>
       </div>
     </aside>
+
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
     <div class="dashboard-body">
+
       <header class="topbar">
         <button class="topbar__menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
         <div class="topbar__title">
           <h1>My Deliveries</h1>
           <p class="topbar__date" id="topbar-date"></p>
         </div>
+        <div class="topbar__actions">
+          <a href="create-delivery.html" class="btn btn--primary">+ New Delivery</a>
+        </div>
       </header>
+
       <main class="dashboard-main">
-        <section class="dashboard-section">
-          <div class="section-header">
-            <h2 class="section-header__title">Delivery History</h2>
+
+        <!-- ---- FILTER BAR ---- -->
+        <div class="filter-bar">
+          <div class="filter-tabs" role="tablist">
+            <button class="filter-tab filter-tab--active" data-filter="ALL"       role="tab">All <span class="tab-count">12</span></button>
+            <button class="filter-tab" data-filter="PENDING"                      role="tab">Pending <span class="tab-count">1</span></button>
+            <button class="filter-tab" data-filter="ACCEPTED"                     role="tab">Accepted <span class="tab-count">1</span></button>
+            <button class="filter-tab" data-filter="IN_TRANSIT"                   role="tab">In Transit <span class="tab-count">1</span></button>
+            <button class="filter-tab" data-filter="DELIVERED"                    role="tab">Delivered <span class="tab-count">9</span></button>
           </div>
-          <div class="table-wrap" style="background: var(--color-surface); border: 1px solid var(--color-border); padding: 1rem; border-radius: var(--radius-md);">
-            <table class="data-table" style="width: 100%; border-collapse: collapse; color: var(--color-text);">
-              <thead>
-                <tr style="text-align: left; color: var(--color-muted); border-bottom: 1px solid var(--color-border);">
-                  <th style="padding: 0.75rem;">ID</th>
-                  <th style="padding: 0.75rem;">Destination</th>
-                  <th style="padding: 0.75rem;">Driver</th>
-                  <th style="padding: 0.75rem;">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td style="padding: 0.75rem;">DEL-00482</td><td style="padding: 0.75rem;">Lekki, Lagos</td><td style="padding: 0.75rem;">Adewale O.</td><td style="padding: 0.75rem; color: #facc15;">In Transit</td></tr>
-                <tr><td style="padding: 0.75rem;">DEL-00479</td><td style="padding: 0.75rem;">Ikoyi, Lagos</td><td style="padding: 0.75rem;">Kemi A.</td><td style="padding: 0.75rem; color: #22c55e;">Delivered</td></tr>
-              </tbody>
-            </table>
+          <div class="filter-search">
+            <input
+              type="search"
+              id="search-input"
+              placeholder="Search by ID or address…"
+              aria-label="Search deliveries"
+            />
           </div>
-        </section>
+        </div>
+
+        <!-- ---- DELIVERIES LIST ---- -->
+        <div class="deliveries-list" id="deliveries-list">
+
+          <!-- DEL-00482 — IN TRANSIT -->
+          <article class="delivery-item" data-status="IN_TRANSIT" data-id="DEL-00482" data-addr="Lekki">
+            <div class="delivery-item__main">
+              <div class="delivery-item__head">
+                <div class="delivery-item__meta">
+                  <span class="delivery-id">DEL-00482</span>
+                  <span class="status-badge status-badge--transit">In Transit</span>
+                </div>
+                <time class="delivery-item__date">Today, 2:30 PM</time>
+              </div>
+
+              <div class="delivery-item__route">
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <span>23 Allen Ave, Ikeja</span>
+                </div>
+                <span class="route-arrow">→</span>
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <span>14 Admiralty Way, Lekki</span>
+                </div>
+              </div>
+
+              <div class="delivery-item__footer">
+                <div class="delivery-item__driver">
+                  <div class="driver-avatar driver-avatar--sm">AO</div>
+                  <span>Adewale O. · Motorcycle · ETA <strong>12 min</strong></span>
+                </div>
+                <button
+                  class="btn btn--outline btn--sm track-button"
+                  type="button"
+                  data-track-id="DEL-00482"
+                  data-track-status="IN_TRANSIT"
+                  data-track-pickup="23 Allen Ave, Ikeja"
+                  data-track-dest="14 Admiralty Way, Lekki"
+                  data-track-driver="Adewale O."
+                  data-track-eta="12 min"
+                >
+                  Track →
+                </button>
+              </div>
+
+              <!-- inline progress -->
+              <div class="delivery-item__progress">
+                <div class="progress-steps-inline">
+                  <span class="pstep pstep--done">Pending</span>
+                  <span class="pstep pstep--done">Accepted</span>
+                  <span class="pstep pstep--done">Picked Up</span>
+                  <span class="pstep pstep--active">In Transit</span>
+                  <span class="pstep">Delivered</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width:75%; background: var(--color-accent);"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- DEL-00479 — ACCEPTED -->
+          <article class="delivery-item" data-status="ACCEPTED" data-id="DEL-00479" data-addr="Ikoyi">
+            <div class="delivery-item__main">
+              <div class="delivery-item__head">
+                <div class="delivery-item__meta">
+                  <span class="delivery-id">DEL-00479</span>
+                  <span class="status-badge status-badge--accepted">Accepted</span>
+                </div>
+                <time class="delivery-item__date">Today, 1:15 PM</time>
+              </div>
+              <div class="delivery-item__route">
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <span>5 Broad St, Lagos Island</span>
+                </div>
+                <span class="route-arrow">→</span>
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <span>12 Awolowo Rd, Ikoyi</span>
+                </div>
+              </div>
+              <div class="delivery-item__footer">
+                <div class="delivery-item__driver">
+                  <div class="driver-avatar driver-avatar--sm">KA</div>
+                  <span>Kemi A. · Car · ETA <strong>28 min</strong></span>
+                </div>
+                <button
+                  class="btn btn--outline btn--sm track-button"
+                  type="button"
+                  data-track-id="DEL-00479"
+                  data-track-status="ACCEPTED"
+                  data-track-pickup="5 Broad St, Lagos Island"
+                  data-track-dest="12 Awolowo Rd, Ikoyi"
+                  data-track-driver="Kemi A."
+                  data-track-eta="28 min"
+                >
+                  Track →
+                </button>
+              </div>
+              <div class="delivery-item__progress">
+                <div class="progress-steps-inline">
+                  <span class="pstep pstep--done">Pending</span>
+                  <span class="pstep pstep--active">Accepted</span>
+                  <span class="pstep">Picked Up</span>
+                  <span class="pstep">In Transit</span>
+                  <span class="pstep">Delivered</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width:25%; background: #60a5fa;"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- DEL-00471 — PENDING -->
+          <article class="delivery-item" data-status="PENDING" data-id="DEL-00471" data-addr="Gbagada">
+            <div class="delivery-item__main">
+              <div class="delivery-item__head">
+                <div class="delivery-item__meta">
+                  <span class="delivery-id">DEL-00471</span>
+                  <span class="status-badge status-badge--pending">Pending</span>
+                </div>
+                <time class="delivery-item__date">Jun 10, 2025</time>
+              </div>
+              <div class="delivery-item__route">
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <span>8 Oduduwa Way, Ikeja GRA</span>
+                </div>
+                <span class="route-arrow">→</span>
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <span>3 Gbagada Express Rd, Gbagada</span>
+                </div>
+              </div>
+              <div class="delivery-item__footer">
+                <div class="delivery-item__driver">
+                  <span class="no-driver">⏳ Awaiting driver assignment</span>
+                </div>
+                <button class="btn btn--ghost btn--sm" disabled>Track →</button>
+              </div>
+              <div class="delivery-item__progress">
+                <div class="progress-steps-inline">
+                  <span class="pstep pstep--active">Pending</span>
+                  <span class="pstep">Accepted</span>
+                  <span class="pstep">Picked Up</span>
+                  <span class="pstep">In Transit</span>
+                  <span class="pstep">Delivered</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width:5%; background: #94a3b8;"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <!-- DEL-00478 — DELIVERED -->
+          <article class="delivery-item" data-status="DELIVERED" data-id="DEL-00478" data-addr="Surulere">
+            <div class="delivery-item__main">
+              <div class="delivery-item__head">
+                <div class="delivery-item__meta">
+                  <span class="delivery-id">DEL-00478</span>
+                  <span class="status-badge status-badge--delivered">Delivered</span>
+                </div>
+                <time class="delivery-item__date">Jun 13, 2025</time>
+              </div>
+              <div class="delivery-item__route">
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <span>10 Toyin St, Ikeja</span>
+                </div>
+                <span class="route-arrow">→</span>
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <span>22 Bode Thomas St, Surulere</span>
+                </div>
+              </div>
+              <div class="delivery-item__footer">
+                <div class="delivery-item__driver">
+                  <div class="driver-avatar driver-avatar--sm">EN</div>
+                  <span>Emeka N. · Motorcycle</span>
+                </div>
+                <button class="btn btn--ghost btn--sm">View Details</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- DEL-00477 — DELIVERED -->
+          <article class="delivery-item" data-status="DELIVERED" data-id="DEL-00477" data-addr="Yaba">
+            <div class="delivery-item__main">
+              <div class="delivery-item__head">
+                <div class="delivery-item__meta">
+                  <span class="delivery-id">DEL-00477</span>
+                  <span class="status-badge status-badge--delivered">Delivered</span>
+                </div>
+                <time class="delivery-item__date">Jun 12, 2025</time>
+              </div>
+              <div class="delivery-item__route">
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <span>45 Marina, Lagos Island</span>
+                </div>
+                <span class="route-arrow">→</span>
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <span>7 Herbert Macaulay Way, Yaba</span>
+                </div>
+              </div>
+              <div class="delivery-item__footer">
+                <div class="delivery-item__driver">
+                  <div class="driver-avatar driver-avatar--sm">FB</div>
+                  <span>Fatima B. · Car</span>
+                </div>
+                <button class="btn btn--ghost btn--sm">View Details</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- DEL-00475 — DELIVERED -->
+          <article class="delivery-item" data-status="DELIVERED" data-id="DEL-00475" data-addr="Ajah">
+            <div class="delivery-item__main">
+              <div class="delivery-item__head">
+                <div class="delivery-item__meta">
+                  <span class="delivery-id">DEL-00475</span>
+                  <span class="status-badge status-badge--delivered">Delivered</span>
+                </div>
+                <time class="delivery-item__date">Jun 11, 2025</time>
+              </div>
+              <div class="delivery-item__route">
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--pickup"></span>
+                  <span>2 Ozumba Mbadiwe Ave, Victoria Island</span>
+                </div>
+                <span class="route-arrow">→</span>
+                <div class="delivery-item__point">
+                  <span class="route-dot route-dot--drop"></span>
+                  <span>Sangotedo, Ajah, Lagos</span>
+                </div>
+              </div>
+              <div class="delivery-item__footer">
+                <div class="delivery-item__driver">
+                  <div class="driver-avatar driver-avatar--sm">TM</div>
+                  <span>Tunde M. · Motorcycle</span>
+                </div>
+                <button class="btn btn--ghost btn--sm">View Details</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Empty state (hidden by default) -->
+          <div class="empty-state" id="empty-state" style="display:none;">
+            <div class="empty-state__icon">📭</div>
+            <h3 class="empty-state__title">No deliveries found</h3>
+            <p class="empty-state__sub">Try a different filter or search term.</p>
+            <a href="create-delivery.html" class="btn btn--primary">+ New Delivery</a>
+          </div>
+
+        </div>
+
       </main>
     </div>
-    <script>
-      const dateEl = document.getElementById("topbar-date");
-      dateEl.textContent = new Date().toLocaleDateString("en-NG", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
-      const sidebar = document.getElementById("sidebar");
-      const overlay = document.getElementById("sidebar-overlay");
-      const menuBtn = document.getElementById("menu-btn");
-      const closeBtn = document.getElementById("sidebar-close");
-      function openSidebar() { sidebar.classList.add("sidebar--open"); overlay.classList.add("overlay--visible"); }
-      function closeSidebar() { sidebar.classList.remove("sidebar--open"); overlay.classList.remove("overlay--visible"); }
-      menuBtn.addEventListener("click", openSidebar);
-      closeBtn.addEventListener("click", closeSidebar);
-      overlay.addEventListener("click", closeSidebar);
-    </script>
+
+    <!-- ===================== TRACKING MODAL ===================== -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal">
+        <div class="modal__header">
+          <div>
+            <h2 class="modal__title" id="modal-title">DEL-00482</h2>
+            <p class="modal__sub">Live Tracking</p>
+          </div>
+          <button class="modal__close" id="modal-close" aria-label="Close modal">✕</button>
+        </div>
+
+        <div class="modal__body">
+
+          <!-- Status timeline -->
+          <div class="tracking-timeline" id="tracking-timeline">
+            <div class="timeline-step" id="tl-pending">
+              <div class="timeline-step__dot"></div>
+              <div class="timeline-step__content">
+                <p class="timeline-step__label">Pending</p>
+                <p class="timeline-step__desc">Delivery request created</p>
+              </div>
+            </div>
+            <div class="timeline-step" id="tl-accepted">
+              <div class="timeline-step__dot"></div>
+              <div class="timeline-step__content">
+                <p class="timeline-step__label">Accepted</p>
+                <p class="timeline-step__desc" id="tl-accepted-desc">Driver assigned</p>
+              </div>
+            </div>
+            <div class="timeline-step" id="tl-pickedup">
+              <div class="timeline-step__dot"></div>
+              <div class="timeline-step__content">
+                <p class="timeline-step__label">Picked Up</p>
+                <p class="timeline-step__desc">Package collected from sender</p>
+              </div>
+            </div>
+            <div class="timeline-step" id="tl-transit">
+              <div class="timeline-step__dot"></div>
+              <div class="timeline-step__content">
+                <p class="timeline-step__label">In Transit</p>
+                <p class="timeline-step__desc" id="tl-eta-desc">On the way to destination</p>
+              </div>
+            </div>
+            <div class="timeline-step" id="tl-delivered">
+              <div class="timeline-step__dot"></div>
+              <div class="timeline-step__content">
+                <p class="timeline-step__label">Delivered</p>
+                <p class="timeline-step__desc">Package received by recipient</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Route summary -->
+          <div class="modal__route" id="modal-route">
+            <div class="modal-route__point">
+              <span class="route-dot route-dot--pickup"></span>
+              <div>
+                <p class="route-label">Pickup</p>
+                <p class="route-address" id="modal-pickup">—</p>
+              </div>
+            </div>
+            <div class="route-connector"></div>
+            <div class="modal-route__point">
+              <span class="route-dot route-dot--drop"></span>
+              <div>
+                <p class="route-label">Destination</p>
+                <p class="route-address" id="modal-dest">—</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Driver info -->
+          <div class="modal__driver" id="modal-driver-block">
+            <div class="driver-avatar">AO</div>
+            <div>
+              <p class="driver-name" id="modal-driver-name">—</p>
+              <p class="driver-eta">ETA: <strong id="modal-eta">—</strong></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+
   </body>
 </html>
