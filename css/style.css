@@ -1,10 +1,4 @@
-/* ============================================================
-   SWIFTDROP — style.css
-   Design tokens: dark navy base, electric orange accent
-   Fonts: Space Grotesk (display) + Inter (body)
-   ============================================================ */
 
-/* ---------- RESET & BASE ---------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -238,7 +232,7 @@ ul, ol { list-style: none; }
 
 .hero__subtext {
   font-size: 1.05rem;
-  color: var(--color-muted);
+  color: var(red);
   max-width: 480px;
   margin-bottom: var(--space-lg);
   line-height: 1.7;
