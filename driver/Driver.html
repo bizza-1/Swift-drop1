@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Jobs – SwiftDrop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/Driver.css" />
+  </head>
+  <body class="dashboard-page">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__header">
+        <a href="../index.html" class="nav__logo">Swift<span class="accent">Drop</span></a>
+        <button class="sidebar__close" id="sidebar-close" aria-label="Close menu">✕</button>
+      </div>
+      <div class="sidebar__user">
+        <div class="user-avatar" style="background:#22c55e;">AO</div>
+        <div>
+          <p class="user-name">Adewale Okafor</p>
+          <p class="user-role" style="color:#22c55e;">Driver · Online</p>
+        </div>
+      </div>
+      <nav class="sidebar__nav">
+        <ul>
+          <li><a href="dashboard.html" class="sidebar__link"><span class="sidebar__icon">🏠</span> Dashboard</a></li>
+          <li><a href="jobs.html"      class="sidebar__link sidebar__link--active"><span class="sidebar__icon">📋</span> Available Jobs</a></li>
+          <li><a href="#"              class="sidebar__link"><span class="sidebar__icon">💰</span> Earnings</a></li>
+          <li><a href="#"              class="sidebar__link"><span class="sidebar__icon">👤</span> Profile</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar__footer">
+        <a href="../login.html" class="sidebar__link sidebar__link--logout">
+          <span class="sidebar__icon">🚪</span> Log Out
+        </a>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div class="dashboard-body">
+
+      <header class="topbar">
+        <button class="topbar__menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
+        <div class="topbar__title">
+          <h1>Available Jobs</h1>
+          <p class="topbar__date" id="topbar-date"></p>
+        </div>
+        <div class="topbar__actions">
+          <div class="online-toggle" id="online-toggle">
+            <span class="online-toggle__dot"></span>
+            <span class="online-toggle__label" id="toggle-label">Online</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="dashboard-main">
+
+        <!-- ---- FILTER BAR ---- -->
+        <div class="filter-bar-driver">
+          <div class="filter-chips">
+            <button class="chip chip--active" data-filter="ALL">All Jobs <span class="tab-count">6</span></button>
+            <button class="chip" data-filter="SMALL">Small</button>
+            <button class="chip" data-filter="MEDIUM">Medium</button>
+            <button class="chip" data-filter="LARGE">Large</button>
+          </div>
+          <div class="sort-select-wrap">
+            <label for="sort-select" class="sr-only">Sort by</label>
+            <select id="sort-select" class="sort-select">
+              <option value="newest">Newest first</option>
+              <option value="price">Highest pay</option>
+              <option value="distance">Nearest pickup</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ---- JOBS GRID ---- -->
+        <div class="jobs-grid" id="jobs-grid">
+
+          <!-- Job 1 -->
+          <article class="job-card-full" data-size="MEDIUM" data-price="1200">
+            <div class="job-card-full__head">
+              <div>
+                <span class="delivery-id">DEL-00483</span>
+                <span class="job-tag job-tag--medium">Medium</span>
+              </div>
+              <span class="job-price">₦1,200</span>
+            </div>
+            <div class="delivery-route">
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--pickup"></span>
+                <div>
+                  <p class="route-label">Pickup</p>
+                  <p class="route-address">8 Oduduwa Way, Ikeja GRA</p>
+                </div>
+              </div>
+              <div class="route-connector"></div>
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--drop"></span>
+                <div>
+                  <p class="route-label">Destination</p>
+                  <p class="route-address">3 Gbagada Express Rd, Gbagada</p>
+                </div>
+              </div>
+            </div>
+            <div class="job-card-full__details">
+              <span class="job-detail">⏱ Posted 5 min ago</span>
+              <span class="job-detail">📏 ~4.2 km</span>
+              <span class="job-detail">📦 ~3 kg</span>
+              <span class="job-detail">⚠️ Fragile</span>
+            </div>
+            <div class="job-card-full__actions">
+              <button class="btn btn--ghost btn--sm" onclick="openJobDetail('DEL-00483','8 Oduduwa Way, Ikeja GRA','3 Gbagada Express Rd, Gbagada','₦1,200','Medium','Fragile','5 min ago')">View Details</button>
+              <button class="btn btn--primary accept-btn" data-id="DEL-00483">Accept Job →</button>
+            </div>
+          </article>
+
+          <!-- Job 2 -->
+          <article class="job-card-full" data-size="LARGE" data-price="2500">
+            <div class="job-card-full__head">
+              <div>
+                <span class="delivery-id">DEL-00484</span>
+                <span class="job-tag job-tag--large">Large</span>
+              </div>
+              <span class="job-price">₦2,500</span>
+            </div>
+            <div class="delivery-route">
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--pickup"></span>
+                <div>
+                  <p class="route-label">Pickup</p>
+                  <p class="route-address">45 Marina, Lagos Island</p>
+                </div>
+              </div>
+              <div class="route-connector"></div>
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--drop"></span>
+                <div>
+                  <p class="route-label">Destination</p>
+                  <p class="route-address">Sangotedo, Ajah, Lagos</p>
+                </div>
+              </div>
+            </div>
+            <div class="job-card-full__details">
+              <span class="job-detail">⏱ Posted 12 min ago</span>
+              <span class="job-detail">📏 ~18 km</span>
+              <span class="job-detail">📦 ~15 kg</span>
+              <span class="job-detail">🚗 Car required</span>
+            </div>
+            <div class="job-card-full__actions">
+              <button class="btn btn--ghost btn--sm" onclick="openJobDetail('DEL-00484','45 Marina, Lagos Island','Sangotedo, Ajah','₦2,500','Large','Car required','12 min ago')">View Details</button>
+              <button class="btn btn--primary accept-btn" data-id="DEL-00484">Accept Job →</button>
+            </div>
+          </article>
+
+          <!-- Job 3 -->
+          <article class="job-card-full" data-size="SMALL" data-price="800">
+            <div class="job-card-full__head">
+              <div>
+                <span class="delivery-id">DEL-00485</span>
+                <span class="job-tag job-tag--small">Small</span>
+              </div>
+              <span class="job-price">₦800</span>
+            </div>
+            <div class="delivery-route">
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--pickup"></span>
+                <div>
+                  <p class="route-label">Pickup</p>
+                  <p class="route-address">12 Fola Agoro St, Yaba</p>
+                </div>
+              </div>
+              <div class="route-connector"></div>
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--drop"></span>
+                <div>
+                  <p class="route-label">Destination</p>
+                  <p class="route-address">20 Ojuelegba Rd, Surulere</p>
+                </div>
+              </div>
+            </div>
+            <div class="job-card-full__details">
+              <span class="job-detail">⏱ Posted 18 min ago</span>
+              <span class="job-detail">📏 ~2.1 km</span>
+              <span class="job-detail">📦 ~0.5 kg</span>
+              <span class="job-detail">🏍️ Motorcycle OK</span>
+            </div>
+            <div class="job-card-full__actions">
+              <button class="btn btn--ghost btn--sm" onclick="openJobDetail('DEL-00485','12 Fola Agoro St, Yaba','20 Ojuelegba Rd, Surulere','₦800','Small','Motorcycle OK','18 min ago')">View Details</button>
+              <button class="btn btn--primary accept-btn" data-id="DEL-00485">Accept Job →</button>
+            </div>
+          </article>
+
+          <!-- Job 4 -->
+          <article class="job-card-full" data-size="MEDIUM" data-price="1500">
+            <div class="job-card-full__head">
+              <div>
+                <span class="delivery-id">DEL-00486</span>
+                <span class="job-tag job-tag--medium">Medium</span>
+              </div>
+              <span class="job-price">₦1,500</span>
+            </div>
+            <div class="delivery-route">
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--pickup"></span>
+                <div>
+                  <p class="route-label">Pickup</p>
+                  <p class="route-address">2 Ozumba Mbadiwe, Victoria Island</p>
+                </div>
+              </div>
+              <div class="route-connector"></div>
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--drop"></span>
+                <div>
+                  <p class="route-label">Destination</p>
+                  <p class="route-address">15 Glover Rd, Ikoyi</p>
+                </div>
+              </div>
+            </div>
+            <div class="job-card-full__details">
+              <span class="job-detail">⏱ Posted 22 min ago</span>
+              <span class="job-detail">📏 ~3.5 km</span>
+              <span class="job-detail">📦 ~5 kg</span>
+              <span class="job-detail">🏍️ Motorcycle OK</span>
+            </div>
+            <div class="job-card-full__actions">
+              <button class="btn btn--ghost btn--sm" onclick="openJobDetail('DEL-00486','2 Ozumba Mbadiwe, VI','15 Glover Rd, Ikoyi','₦1,500','Medium','Motorcycle OK','22 min ago')">View Details</button>
+              <button class="btn btn--primary accept-btn" data-id="DEL-00486">Accept Job →</button>
+            </div>
+          </article>
+
+          <!-- Job 5 -->
+          <article class="job-card-full" data-size="SMALL" data-price="600">
+            <div class="job-card-full__head">
+              <div>
+                <span class="delivery-id">DEL-00487</span>
+                <span class="job-tag job-tag--small">Small</span>
+              </div>
+              <span class="job-price">₦600</span>
+            </div>
+            <div class="delivery-route">
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--pickup"></span>
+                <div>
+                  <p class="route-label">Pickup</p>
+                  <p class="route-address">7 Obafemi Awolowo Way, Ikeja</p>
+                </div>
+              </div>
+              <div class="route-connector"></div>
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--drop"></span>
+                <div>
+                  <p class="route-label">Destination</p>
+                  <p class="route-address">4 Anthony Village Rd, Maryland</p>
+                </div>
+              </div>
+            </div>
+            <div class="job-card-full__details">
+              <span class="job-detail">⏱ Posted 30 min ago</span>
+              <span class="job-detail">📏 ~1.8 km</span>
+              <span class="job-detail">📦 ~0.3 kg</span>
+              <span class="job-detail">🏍️ Motorcycle OK</span>
+            </div>
+            <div class="job-card-full__actions">
+              <button class="btn btn--ghost btn--sm" onclick="openJobDetail('DEL-00487','7 Obafemi Awolowo Way, Ikeja','4 Anthony Village Rd, Maryland','₦600','Small','Motorcycle OK','30 min ago')">View Details</button>
+              <button class="btn btn--primary accept-btn" data-id="DEL-00487">Accept Job →</button>
+            </div>
+          </article>
+
+          <!-- Job 6 -->
+          <article class="job-card-full" data-size="LARGE" data-price="3500">
+            <div class="job-card-full__head">
+              <div>
+                <span class="delivery-id">DEL-00488</span>
+                <span class="job-tag job-tag--large">Large</span>
+              </div>
+              <span class="job-price">₦3,500</span>
+            </div>
+            <div class="delivery-route">
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--pickup"></span>
+                <div>
+                  <p class="route-label">Pickup</p>
+                  <p class="route-address">30 Bode Thomas St, Surulere</p>
+                </div>
+              </div>
+              <div class="route-connector"></div>
+              <div class="delivery-route__point">
+                <span class="route-dot route-dot--drop"></span>
+                <div>
+                  <p class="route-label">Destination</p>
+                  <p class="route-address">1 Lekki-Epe Expressway, Lekki</p>
+                </div>
+              </div>
+            </div>
+            <div class="job-card-full__details">
+              <span class="job-detail">⏱ Posted 35 min ago</span>
+              <span class="job-detail">📏 ~22 km</span>
+              <span class="job-detail">📦 ~20 kg</span>
+              <span class="job-detail">🚗 Van required</span>
+            </div>
+            <div class="job-card-full__actions">
+              <button class="btn btn--ghost btn--sm" onclick="openJobDetail('DEL-00488','30 Bode Thomas St, Surulere','1 Lekki-Epe Expressway, Lekki','₦3,500','Large','Van required','35 min ago')">View Details</button>
+              <button class="btn btn--primary accept-btn" data-id="DEL-00488">Accept Job →</button>
+            </div>
+          </article>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- ===================== JOB DETAIL MODAL ===================== -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">
+      <div class="modal">
+        <div class="modal__header">
+          <div>
+            <h2 class="modal__title" id="modal-id">DEL-00483</h2>
+            <p class="modal__sub">Job Details</p>
+          </div>
+          <button class="modal__close" id="modal-close">✕</button>
+        </div>
+        <div class="modal__body">
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Pickup</span>
+            <span id="md-pickup">—</span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Destination</span>
+            <span id="md-dest">—</span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Pay</span>
+            <span id="md-price" style="color:var(--color-accent);font-weight:700;font-size:1.1rem;">—</span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Size</span>
+            <span id="md-size">—</span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Notes</span>
+            <span id="md-notes">—</span>
+          </div>
+          <div class="modal-detail-row">
+            <span class="modal-detail-label">Posted</span>
+            <span id="md-time">—</span>
+          </div>
+          <div class="modal__footer-actions">
+            <button class="btn btn--ghost btn--lg" id="modal-close-2">Cancel</button>
+            <button class="btn btn--primary btn--lg" id="modal-accept-btn">Accept This Job →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  
+    <script src="../js/utils.js"></script>
+    <script src="../js/driver.js"></script>
+  </body>
+</html>

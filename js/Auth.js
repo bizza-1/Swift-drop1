@@ -121,6 +121,25 @@ function initRegisterForm() {
     });
   });
 
+  // Ensure correct visibility on load — respect `?role=driver` query param or the checked radio
+  (function setInitialRoleVisibility() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const qRole = params.get("role");
+      if (qRole && qRole.toLowerCase() === "driver") {
+        const driverInput = document.querySelector('input[name="role"][value="DRIVER"]');
+        if (driverInput) driverInput.checked = true;
+      }
+    } catch (e) {
+      // ignore URL parsing errors
+    }
+
+    const checked = document.querySelector('input[name="role"]:checked');
+    if (vehicleGroup) {
+      vehicleGroup.style.display = checked && checked.value === "DRIVER" ? "flex" : "none";
+    }
+  })();
+
   // ---- Password strength meter ----
   const passwordInput  = document.getElementById("password");
   const strengthFill   = document.getElementById("strength-fill");
