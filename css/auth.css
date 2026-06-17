@@ -1,16 +1,10 @@
-/* ============================================================
-   SWIFTDROP — auth.css
-   Styles for login.html and register.html
-   ============================================================ */
 
-/* ---------- AUTH PAGE LAYOUT ---------- */
 .auth-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* ---------- AUTH HEADER ---------- */
 .auth-header {
   display: flex;
   align-items: center;

@@ -1,9 +1,4 @@
-/* ============================================================
-   SWIFTDROP — dashboard.css
-   Shared styles for all dashboard pages
-   ============================================================ */
 
-/* ---------- LAYOUT ---------- */
 .dashboard-page {
   display: flex;
   min-height: 100vh;
