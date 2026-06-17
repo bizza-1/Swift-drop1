@@ -32,10 +32,10 @@
 
     
     <main class="auth-main">
-      <div class="auth-card row g-0 shadow">
+      <div class="auth-card shadow">
 
         <!-- Left panel — branding -->
-        <div class="auth-card__panel auth-card__panel--brand col-12 col-lg-6 d-flex align-items-center">
+        <div class="auth-card__panel auth-card__panel--brand">
           <div class="brand-panel__inner">
             <p class="brand-panel__eyebrow">Join SwiftDrop</p>
             <h1 class="brand-panel__headline">
@@ -73,14 +73,14 @@
         </div>
 
         <!-- Right panel — form -->
-        <div class="auth-card__panel auth-card__panel--form col-12 col-lg-6">
+        <div class="auth-card__panel auth-card__panel--form">
           <div class="form-panel__inner p-4 p-lg-5">
             <h2 class="form-panel__title">Create your account</h2>
             <p class="form-panel__sub">Fill in the details below to get started.</p>
 
-            <form class="auth-form row g-3" id="register-form" novalidate>
+            <form class="auth-form" id="register-form" novalidate>
 
-              <div class="form-group col-12">
+              <div class="form-group">
                 <label for="fullname" class="form-label">Full Name</label>
                 <input
                   type="text"
@@ -94,7 +94,7 @@
                 <span class="field-error" id="fullname-error"></span>
               </div>
 
-              <div class="form-group col-12">
+              <div class="form-group">
                 <label for="email" class="form-label">Email Address</label>
                 <input
                   type="email"
@@ -108,7 +108,7 @@
                 <span class="field-error" id="email-error"></span>
               </div>
 
-              <div class="form-group col-12">
+              <div class="form-group">
                 <label for="phone" class="form-label">Phone Number</label>
                 <input
                   type="tel"
@@ -123,7 +123,7 @@
               </div>
 
               <!-- Role selector -->
-              <div class="form-group col-12">
+              <div class="form-group">
                 <label class="form-label">I want to join as</label>
                 <div class="role-selector d-flex flex-wrap gap-3" id="role-selector">
                   <label class="role-option" for="role-customer">
@@ -158,7 +158,7 @@
               </div>
 
               <!-- Driver-only field (shown conditionally) -->
-              <div class="form-group col-12" id="vehicle-group" style="display: none;">
+              <div class="form-group" id="vehicle-group" style="display: none;">
                 <label for="vehicle" class="form-label">Vehicle Type</label>
                 <select id="vehicle" name="vehicle_type" class="form-select">
                   <option value="">Select your vehicle</option>
@@ -170,9 +170,9 @@
                 <span class="field-error" id="vehicle-error"></span>
               </div>
 
-              <div class="form-group col-12">
+              <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <div class="input-group">
+                <div class="input-wrapper">
                   <input
                     type="password"
                     id="password"
@@ -196,9 +196,9 @@
                 <span class="field-error" id="password-error"></span>
               </div>
 
-              <div class="form-group col-12">
+              <div class="form-group">
                 <label for="confirm-password" class="form-label">Confirm Password</label>
-                <div class="input-group">
+                <div class="input-wrapper">
                   <input
                     type="password"
                     id="confirm-password"
@@ -218,7 +218,7 @@
                 <span class="field-error" id="confirm-error"></span>
               </div>
 
-              <div class="form-group form-group--checkbox form-check col-12">
+              <div class="form-group form-group--checkbox form-check">
                 <input
                   class="form-check-input"
                   type="checkbox"

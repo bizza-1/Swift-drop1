@@ -153,11 +153,14 @@
   background: rgba(0, 0, 0, 0.6);
   z-index: 199;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s;
 }
 
 .sidebar-overlay.overlay--visible {
+  display: block;
   opacity: 1;
+  pointer-events: auto;
 }
 
 /* ============================================================
@@ -587,9 +590,6 @@
   }
   .sidebar--open {
     transform: translateX(0);
-  }
-  .sidebar-overlay {
-    display: block;
   }
   .sidebar__close {
     display: block;
