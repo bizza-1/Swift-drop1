@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/auth.css" />
   </head>
-  <body class="auth-page">
+  <body class="auth-page auth-page--register">
 
     <!-- ===================== HEADER ===================== -->
     <header class="auth-header">
@@ -32,40 +32,67 @@
 
     
     <main class="auth-main">
-      <div class="auth-card shadow">
+      <div class="auth-card auth-card--register">
 
         <!-- Left panel — branding -->
-        <div class="auth-card__panel auth-card__panel--brand">
+        <div class="auth-card__panel auth-card__panel--brand register-hero">
           <div class="brand-panel__inner">
-            <p class="brand-panel__eyebrow">Join SwiftDrop</p>
+            <p class="brand-panel__eyebrow">Start moving today</p>
             <h1 class="brand-panel__headline">
-              Send, track,<br />and earn — fast.
+              One account for<br />faster deliveries.
             </h1>
             <p class="brand-panel__sub">
-              Create your account in under 60 seconds. No credit card required.
+              Send packages, track every stop, or earn on the road with a clean SwiftDrop workspace built for daily delivery work.
             </p>
 
-            <!-- Benefit list -->
+            <div class="register-visual" aria-hidden="true">
+              <div class="register-visual__map">
+                <span class="map-pin map-pin--pickup"></span>
+                <span class="map-pin map-pin--drop"></span>
+                <span class="map-route"></span>
+              </div>
+              <div class="register-visual__card">
+                <span class="visual-card__label">Current route</span>
+                <strong>Lekki Phase 1</strong>
+                <span>ETA 18 min</span>
+              </div>
+            </div>
+
+            <div class="register-stats" aria-label="SwiftDrop highlights">
+              <div>
+                <strong>24/7</strong>
+                <span>Delivery access</span>
+              </div>
+              <div>
+                <strong>Live</strong>
+                <span>Tracking updates</span>
+              </div>
+              <div>
+                <strong>Fast</strong>
+                <span>Driver matching</span>
+              </div>
+            </div>
+
             <ul class="benefit-list">
               <li class="benefit-item">
-                <span class="benefit-icon">📦</span>
+                <span class="benefit-icon">01</span>
                 <div>
                   <strong>Customers</strong>
-                  <p>Request deliveries, track in real time, view history.</p>
+                  <p>Request deliveries, track progress, and manage your history.</p>
                 </div>
               </li>
               <li class="benefit-item">
-                <span class="benefit-icon">🏍️</span>
+                <span class="benefit-icon">02</span>
                 <div>
                   <strong>Drivers</strong>
-                  <p>Accept jobs, update statuses, track your earnings.</p>
+                  <p>Accept jobs, update statuses, and keep an eye on earnings.</p>
                 </div>
               </li>
               <li class="benefit-item">
-                <span class="benefit-icon">🔐</span>
+                <span class="benefit-icon">03</span>
                 <div>
-                  <strong>Secure by default</strong>
-                  <p>JWT auth, role-based access, encrypted passwords.</p>
+                  <strong>Secure access</strong>
+                  <p>Your role decides what you see after sign up.</p>
                 </div>
               </li>
             </ul>
@@ -74,9 +101,10 @@
 
         <!-- Right panel — form -->
         <div class="auth-card__panel auth-card__panel--form">
-          <div class="form-panel__inner p-4 p-lg-5">
-            <h2 class="form-panel__title">Create your account</h2>
-            <p class="form-panel__sub">Fill in the details below to get started.</p>
+          <div class="form-panel__inner">
+            <p class="form-panel__eyebrow">Create free account</p>
+            <h2 class="form-panel__title">Tell us who you are</h2>
+            <p class="form-panel__sub">Choose your role, add your details, and you are ready to move.</p>
 
             <form class="auth-form" id="register-form" novalidate>
 
@@ -101,7 +129,7 @@
                   id="email"
                   name="email"
                   class="form-control"
-                  placeholder="you@example.com"
+                  placeholder="you@swiftdrop.com"
                   autocomplete="email"
                   required
                 />
@@ -125,7 +153,7 @@
               <!-- Role selector -->
               <div class="form-group">
                 <label class="form-label">I want to join as</label>
-                <div class="role-selector d-flex flex-wrap gap-3" id="role-selector">
+                <div class="role-selector" id="role-selector">
                   <label class="role-option" for="role-customer">
                     <input
                       type="radio"
@@ -135,9 +163,9 @@
                       checked
                     />
                     <span class="role-option__card">
-                      <span class="role-option__icon">📦</span>
+                      <span class="role-option__icon">C</span>
                       <span class="role-option__label">Customer</span>
-                      <span class="role-option__desc">I want to send packages</span>
+                      <span class="role-option__desc">Send packages</span>
                     </span>
                   </label>
                   <label class="role-option" for="role-driver">
@@ -148,9 +176,9 @@
                       value="DRIVER"
                     />
                     <span class="role-option__card">
-                      <span class="role-option__icon">🏍️</span>
+                      <span class="role-option__icon">D</span>
                       <span class="role-option__label">Driver</span>
-                      <span class="role-option__desc">I want to deliver & earn</span>
+                      <span class="role-option__desc">Deliver and earn</span>
                     </span>
                   </label>
                 </div>
@@ -187,7 +215,7 @@
                     class="btn btn-outline-secondary toggle-password"
                     aria-label="Show password"
                     data-target="password"
-                  >👁</button>
+                  >Show</button>
                 </div>
                 <div class="password-strength" id="strength-bar">
                   <div class="strength-fill" id="strength-fill"></div>
@@ -213,7 +241,7 @@
                     class="btn btn-outline-secondary toggle-password"
                     aria-label="Show confirm password"
                     data-target="confirm-password"
-                  >👁</button>
+                  >Show</button>
                 </div>
                 <span class="field-error" id="confirm-error"></span>
               </div>
@@ -237,7 +265,7 @@
 
               <div class="form-error" id="form-error" role="alert"></div>
 
-              <button type="submit" class="btn btn-primary btn-lg w-100" id="submit-btn">
+              <button type="submit" class="btn btn--primary btn--lg btn--full" id="submit-btn">
                 Create Account
               </button>
 

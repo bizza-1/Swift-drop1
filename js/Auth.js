@@ -14,7 +14,7 @@ function initPasswordToggles() {
       if (!input) return;
       const isText = input.type === "text";
       input.type = isText ? "password" : "text";
-      btn.textContent = isText ? "👁" : "🙈";
+      btn.textContent = isText ? "Show" : "Hide";
       btn.setAttribute("aria-label", isText ? "Show password" : "Hide password");
     });
   });
