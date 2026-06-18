@@ -3,40 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard – SwiftDrop</title>
+    <title>Admin Dashboard - SwiftDrop</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
   </head>
   <body class="dashboard-page">
+
+    <!-- ===================== SIDEBAR ===================== -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar__header">
         <a href="../index.html" class="nav__logo">Swift<span class="accent">Drop</span></a>
         <button class="sidebar__close" id="sidebar-close" aria-label="Close menu">✕</button>
       </div>
+
       <div class="sidebar__user">
-        <div class="user-avatar">SW</div>
+        <div class="user-avatar admin-avatar">SD</div>
         <div>
-          <p class="user-name">SwiftDrop Admin</p>
+          <p class="user-name">SwiftDrop HQ</p>
           <p class="user-role">Admin</p>
         </div>
       </div>
+
       <nav class="sidebar__nav">
         <ul>
-          <li><a href="dashboard.html" class="sidebar__link sidebar__link--active">🏠 Dashboard</a></li>
-          <li><a href="#" class="sidebar__link">📊 Analytics</a></li>
-          <li><a href="#" class="sidebar__link">👥 Driver Approvals</a></li>
-          <li><a href="#" class="sidebar__link">⚙️ Settings</a></li>
+          <li>
+            <a href="dashboard.html" class="sidebar__link sidebar__link--active">
+              <span class="sidebar__icon">🏠</span> Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#operations" class="sidebar__link">
+              <span class="sidebar__icon">📦</span> Operations
+            </a>
+          </li>
+          <li>
+            <a href="#drivers" class="sidebar__link">
+              <span class="sidebar__icon">👥</span> Drivers
+            </a>
+          </li>
+          <li>
+            <a href="#payments" class="sidebar__link">
+              <span class="sidebar__icon">💰</span> Payments
+            </a>
+          </li>
+          <li>
+            <a href="#support" class="sidebar__link">
+              <span class="sidebar__icon">🛟</span> Support
+            </a>
+          </li>
+          <li>
+            <a href="#" class="sidebar__link">
+              <span class="sidebar__icon">⚙️</span> Settings
+            </a>
+          </li>
         </ul>
       </nav>
+
       <div class="sidebar__footer">
-        <a href="../login.html" class="sidebar__link sidebar__link--logout">🚪 Log Out</a>
+        <a href="../login.html" class="sidebar__link sidebar__link--logout">
+          <span class="sidebar__icon">🚪</span> Log Out
+        </a>
       </div>
     </aside>
+
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ===================== MAIN CONTENT ===================== -->
     <div class="dashboard-body">
       <header class="topbar">
         <button class="topbar__menu-btn" id="menu-btn" aria-label="Open menu">☰</button>
@@ -44,19 +84,319 @@
           <h1>Admin Dashboard</h1>
           <p class="topbar__date" id="topbar-date"></p>
         </div>
+        <div class="topbar__actions">
+          <a href="#drivers" class="btn btn--outline">Review Drivers</a>
+          <a href="#operations" class="btn btn--primary">Monitor Live Jobs</a>
+        </div>
       </header>
+
       <main class="dashboard-main">
+
+        <!-- ---- PLATFORM STATS ---- -->
+        <section class="stats-grid" aria-label="Platform statistics">
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--blue">📦</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Total Deliveries</p>
+              <p class="stat-card__value">1,284</p>
+              <p class="stat-card__change stat-card__change--up">↑ 18% this month</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--orange">🚚</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Active Jobs</p>
+              <p class="stat-card__value">37</p>
+              <p class="stat-card__change">Across Lagos now</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--green">👥</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Verified Drivers</p>
+              <p class="stat-card__value">218</p>
+              <p class="stat-card__change stat-card__change--up">12 online today</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--yellow">💰</div>
+            <div class="stat-card__body">
+              <p class="stat-card__label">Revenue</p>
+              <p class="stat-card__value">₦3.8M</p>
+              <p class="stat-card__change stat-card__change--up">↑ ₦420k this week</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- CONTROL CENTER ---- -->
+        <section class="admin-control-grid" aria-label="Admin control center">
+          <div class="admin-panel admin-panel--wide" id="operations">
+            <div class="section-header">
+              <h2 class="section-header__title">Live Operations</h2>
+              <span class="admin-live-badge">● LIVE</span>
+            </div>
+
+            <div class="operations-list">
+              <article class="operation-item">
+                <div>
+                  <span class="delivery-id">DEL-00492</span>
+                  <span class="status-badge status-badge--transit">In Transit</span>
+                </div>
+                <div class="operation-route">
+                  <p class="route-address">Ikeja GRA → Lekki Phase 1</p>
+                  <p class="driver-eta">Driver: Chinedu A. · ETA 14 min</p>
+                </div>
+                <button class="btn btn--outline btn--sm">Track</button>
+              </article>
+
+              <article class="operation-item">
+                <div>
+                  <span class="delivery-id">DEL-00491</span>
+                  <span class="status-badge status-badge--accepted">Accepted</span>
+                </div>
+                <div class="operation-route">
+                  <p class="route-address">Yaba → Victoria Island</p>
+                  <p class="driver-eta">Driver: Maryam U. · Pickup in 6 min</p>
+                </div>
+                <button class="btn btn--outline btn--sm">Track</button>
+              </article>
+
+              <article class="operation-item">
+                <div>
+                  <span class="delivery-id">DEL-00490</span>
+                  <span class="status-badge status-badge--pending">Pending</span>
+                </div>
+                <div class="operation-route">
+                  <p class="route-address">Surulere → Ajah</p>
+                  <p class="driver-eta">Awaiting nearby driver match</p>
+                </div>
+                <button class="btn btn--primary btn--sm">Assign</button>
+              </article>
+            </div>
+          </div>
+
+          <div class="admin-panel" id="support">
+            <div class="section-header">
+              <h2 class="section-header__title">Alerts</h2>
+              <a href="#" class="section-header__link">Resolve all</a>
+            </div>
+
+            <div class="alert-stack">
+              <div class="alert-item alert-item--danger">
+                <span class="alert-item__icon">!</span>
+                <div>
+                  <p class="alert-item__title">2 delayed deliveries</p>
+                  <p class="alert-item__text">One job is 24 minutes behind ETA.</p>
+                </div>
+              </div>
+              <div class="alert-item alert-item--warning">
+                <span class="alert-item__icon">!</span>
+                <div>
+                  <p class="alert-item__title">5 pending verifications</p>
+                  <p class="alert-item__text">Driver documents need review.</p>
+                </div>
+              </div>
+              <div class="alert-item alert-item--info">
+                <span class="alert-item__icon">i</span>
+                <div>
+                  <p class="alert-item__title">High demand zone</p>
+                  <p class="alert-item__text">Lekki requests are up 31% today.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- DRIVER APPROVALS ---- -->
+        <section class="dashboard-section" id="drivers">
+          <div class="section-header">
+            <h2 class="section-header__title">Driver Approvals</h2>
+            <a href="#" class="section-header__link">View queue →</a>
+          </div>
+
+          <div class="approval-grid">
+            <article class="approval-card">
+              <div class="approval-card__head">
+                <div class="driver-avatar">CO</div>
+                <div>
+                  <p class="driver-name">Chisom Okeke</p>
+                  <p class="driver-eta">Motorcycle · Lagos Mainland</p>
+                </div>
+              </div>
+              <div class="approval-meta">
+                <span>License uploaded</span>
+                <span>Insurance pending</span>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn--primary btn--sm">Approve</button>
+                <button class="btn btn--outline btn--sm">Review</button>
+              </div>
+            </article>
+
+            <article class="approval-card">
+              <div class="approval-card__head">
+                <div class="driver-avatar approval-card__avatar--blue">TA</div>
+                <div>
+                  <p class="driver-name">Tunde Afolabi</p>
+                  <p class="driver-eta">Car · Island route</p>
+                </div>
+              </div>
+              <div class="approval-meta">
+                <span>ID verified</span>
+                <span>Vehicle photo uploaded</span>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn--primary btn--sm">Approve</button>
+                <button class="btn btn--outline btn--sm">Review</button>
+              </div>
+            </article>
+
+            <article class="approval-card">
+              <div class="approval-card__head">
+                <div class="driver-avatar approval-card__avatar--green">NK</div>
+                <div>
+                  <p class="driver-name">Ngozi Kalu</p>
+                  <p class="driver-eta">Van · Bulk delivery</p>
+                </div>
+              </div>
+              <div class="approval-meta">
+                <span>Background check ready</span>
+                <span>Bank details added</span>
+              </div>
+              <div class="approval-actions">
+                <button class="btn btn--primary btn--sm">Approve</button>
+                <button class="btn btn--outline btn--sm">Review</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ---- TABLES ---- -->
+        <section class="admin-table-grid">
+          <div class="dashboard-section">
+            <div class="section-header">
+              <h2 class="section-header__title">Recent Deliveries</h2>
+              <a href="#" class="section-header__link">Export →</a>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Driver</th>
+                    <th>Fee</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>DEL-00492</td>
+                    <td>Adewale O.</td>
+                    <td>Chinedu A.</td>
+                    <td>₦1,500</td>
+                    <td><span class="status-badge status-badge--transit">In Transit</span></td>
+                  </tr>
+                  <tr>
+                    <td>DEL-00491</td>
+                    <td>Kemi A.</td>
+                    <td>Maryam U.</td>
+                    <td>₦2,200</td>
+                    <td><span class="status-badge status-badge--accepted">Accepted</span></td>
+                  </tr>
+                  <tr>
+                    <td>DEL-00489</td>
+                    <td>Daniel I.</td>
+                    <td>Sarah E.</td>
+                    <td>₦900</td>
+                    <td><span class="status-badge status-badge--delivered">Delivered</span></td>
+                  </tr>
+                  <tr>
+                    <td>DEL-00487</td>
+                    <td>Ruth N.</td>
+                    <td>Emeka U.</td>
+                    <td>₦3,000</td>
+                    <td><span class="status-badge status-badge--cancelled">Cancelled</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="dashboard-section" id="payments">
+            <div class="section-header">
+              <h2 class="section-header__title">Payout Queue</h2>
+              <a href="#" class="section-header__link">Process →</a>
+            </div>
+
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Driver</th>
+                    <th>Deliveries</th>
+                    <th>Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Chinedu A.</td>
+                    <td>12</td>
+                    <td>₦18,400</td>
+                  </tr>
+                  <tr>
+                    <td>Maryam U.</td>
+                    <td>9</td>
+                    <td>₦14,100</td>
+                  </tr>
+                  <tr>
+                    <td>Sarah E.</td>
+                    <td>7</td>
+                    <td>₦9,800</td>
+                  </tr>
+                  <tr>
+                    <td>Emeka U.</td>
+                    <td>5</td>
+                    <td>₦7,200</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- QUICK ACTIONS ---- -->
         <section class="dashboard-section">
           <div class="section-header">
-            <h2 class="section-header__title">Platform Overview</h2>
+            <h2 class="section-header__title">Quick Actions</h2>
           </div>
-          <div class="feature-card" style="padding: 2rem; background: var(--color-surface); border: 1px solid var(--color-border);">
-            <p style="color: var(--color-muted);">This placeholder admin dashboard is connected to the login flow and site navigation.</p>
-            <p style="color: var(--color-text);">Replace this page with your admin analytics, user management, and driver controls.</p>
+
+          <div class="quick-actions">
+            <a href="#operations" class="quick-action-card">
+              <span class="quick-action-card__icon">📍</span>
+              <span class="quick-action-card__label">Dispatch Center</span>
+            </a>
+            <a href="#drivers" class="quick-action-card">
+              <span class="quick-action-card__icon">✅</span>
+              <span class="quick-action-card__label">Approve Drivers</span>
+            </a>
+            <a href="#payments" class="quick-action-card">
+              <span class="quick-action-card__icon">💳</span>
+              <span class="quick-action-card__label">Payouts</span>
+            </a>
+            <a href="#support" class="quick-action-card">
+              <span class="quick-action-card__icon">💬</span>
+              <span class="quick-action-card__label">Support Desk</span>
+            </a>
           </div>
         </section>
       </main>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/app.js"></script>
   </body>
